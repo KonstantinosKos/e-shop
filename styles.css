@@ -1,27 +1,39 @@
 #navigation {
-    background-color: rgb(120, 149, 241);
-    margin-left: 2%;
-    margin-right: 2%;
-    border-radius: 50px;
-    background-image: url(images/bi.jpg);
-    background-repeat: no-repeat;
-    background-position: left;
-    background-size: 6%;
-    height: 100%;
+  background-color: rgb(2, 61, 255);
+  margin-left: 2%;
+  margin-right: 2%;
+  border-radius: 50px;
+  background-image: url(images/bi.jpg);
+  background-repeat: no-repeat;
+  background-position: left;
+  background-size: 6%;
+  height: 100%;
 }
 
-#searchbutton{
-    margin-right: 10%;
+#searchbutton {
+  margin-right: 10%;
 }
 
-#login{
-    margin-right: 3%;
+#login {
+  margin-right: 3%;
 }
 
-#submit{
-    margin-bottom: 5%;
+#submit {
+  margin-bottom: 5%;
 }
 
-#placeholder{
-    width: 250px;
+#placeholder {
+  width: 250px;
 }
+
+/* .carousel1{
+    position: relative;
+} */
+
+aside {
+    float: left;
+    width: 20%;
+    background-color: #f1f1f1;
+    padding: 15px;
+    box-sizing: border-box;
+  }
