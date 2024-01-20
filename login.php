@@ -3,24 +3,24 @@
 include ("config.php");
 
 
-    if ($_SERVER["REQUEST_METHOD"] == "get") {
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
    
         $email = $_POST["email"];
         $password = $_POST["password"];
 
         // Perform a query to get the user with the given email
-        $sql = "SELECT * FROM users WHERE email = '$email'";
+        $sql = "SELECT * FROM users WHERE user_email = '$email'";
         $result = $conn->query($sql);
 
         if ($result->num_rows > 0) {
             // User found, now check the password
             $row = $result->fetch_assoc();
-            $hashedPasswordFromDatabase = $row["password"]; // Replace "password" with your actual database column name
+            $hashedPasswordFromDatabase = $row["user_password"]; // Replace "password" with your actual database column name
         
             // Verify the password
-            if (password_verify($password, $hashedPasswordFromDatabase)) {
+            if ($password == $hashedPasswordFromDatabase) {
                 // Successful login
-                echo "Login successful!";
+                echo " Login successful!";
             } else {
                 // Invalid password
                 echo "Invalid email or password. Please try again.";
