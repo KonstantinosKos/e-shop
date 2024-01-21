@@ -50,44 +50,11 @@
                         }
                     });
                 </script>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal"
-                    style="width: 10%;" id="login">
+
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 10%;"
+                    id="login">
                     Login / Sign-up
-
                 </button>
-
-                <script>
-                    // Check if the user is logged in (use the same condition as in PHP)
-                    // var isLoggedIn = <?php echo json_encode($isLoggedIn); ?>;
-            
-                    // Get the login container element
-                    var loginContainer = document.getElementById('loginContainer');
-            
-                    // Update the content based on the login status
-                    if (isLoggedIn) {
-                        // Replace the content with the dropdown HTML
-                        loginContainer.innerHTML = `
-                            <div class="dropdown">
-                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                    Welcome, User!
-                                </button>
-                                <div class="dropdown-menu">
-                                    <!-- Dropdown menu content -->
-                                    <a class="dropdown-item" href="#">Profile</a>
-                                    <a class="dropdown-item" href="#">Settings</a>
-                                    <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="logout.php">Logout</a>
-                                </div>
-                            </div>`;
-                    } else {
-                        // Keep the original button HTML
-                        loginContainer.innerHTML = `
-                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal" style="width: 10%;" id="login">
-                                Login / Sign-up
-                            </button>`;
-                    }
-                </script>
-
 
                 <!-- Login Modal -->
                 <div class="modal" id="myModal">
