@@ -20,7 +20,12 @@ include ("config.php");
             // Verify the password
             if ($password == $hashedPasswordFromDatabase) {
                 // Successful login
-                echo " Login successful!";
+                session_start();
+                $_SESSION['logged_in'] = true;
+    
+                // Redirect to the main page
+                header("Location: index.php");
+                exit();
             } else {
                 // Invalid password
                 echo "Invalid email or password. Please try again.";
