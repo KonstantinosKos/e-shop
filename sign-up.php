@@ -6,7 +6,6 @@
     <link rel="icon" type="image/x-icon" href="/images/favicon.jpg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="path/to/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 
@@ -140,19 +139,19 @@
 
     </div>
 
-    <section class="signup-form">
+    <section class="form-floating mb-3">
         <form action="signup.php" method="post">
-                <input type="text" name="firstname" placeholder="First Name">
-                <input type="text" name="lastname" placeholder="Last Name">
-                <input type="text" name="Username" placeholder="Username">
-                <input type="email" name="email" placeholder="E-mail">
-                <input type="password" name="password" placeholder="Password">
-                <input type="number" name="phonenumber" placeholder="Phone Number">
-                <input type="text" name="street" placeholder="Street & Number">
-                <input type="number" name="zipcode" placeholder="Zip Code">
-                <input type="text" name="city" placeholder="City">
-                <input type="text" name="state" placeholder="State">
-                <button typoe="submit" name="submit" >Sign Up</button>
+                <input type="text" name="uid"  class="form-control" id="floatingInput" placeholder="Username">
+                <input type="password" name="password"  class="form-control" id="floatingInput" placeholder="Password">
+                <input type="text" name="firstname"  class="form-control" id="floatingInput" placeholder="First Name">
+                <input type="text" name="lastname"  class="form-control" id="floatingInput" placeholder="Last Name">
+                <input type="email" name="email"  class="form-control" id="floatingInput" placeholder="E-mail">
+                <input type="number" name="phonenumber"  class="form-control" id="floatingInput" placeholder="Phone Number">
+                <input type="text" name="street"  class="form-control" id="floatingInput" placeholder="Street & Number">
+                <input type="number" name="zipcode"  class="form-control" id="floatingInput" placeholder="Zip Code">
+                <input type="text" name="city"  class="form-control" id="floatingInput" placeholder="City">
+                <input type="text" name="state"  class="form-control" id="floatingInput" placeholder="State">
+                <button typoe="submit" name="submit" class="btn btn-primary" id="submit" >Sign Up</button>
         </form>
     </section>
     <footer>
