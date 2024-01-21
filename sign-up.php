@@ -33,10 +33,9 @@
                     <button class="btn btn-primary" type="button" id="searchButton">Search</button>
                 </form>
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 10%;"
-                id="login">
-                Login / Sign-up
-
-            </button>
+                    id="login">
+                    Login / Sign-up
+                </button>
 
 
                 <!-- Login Modal -->
@@ -140,6 +139,22 @@
         </script>
 
     </div>
+
+    <section class="signup-form">
+        <form action="signup.php" method="post">
+                <input type="text" name="firstname" placeholder="First Name">
+                <input type="text" name="lastname" placeholder="Last Name">
+                <input type="text" name="Username" placeholder="Username">
+                <input type="email" name="email" placeholder="E-mail">
+                <input type="password" name="password" placeholder="Password">
+                <input type="number" name="phonenumber" placeholder="Phone Number">
+                <input type="text" name="street" placeholder="Street & Number">
+                <input type="number" name="zipcode" placeholder="Zip Code">
+                <input type="text" name="city" placeholder="City">
+                <input type="text" name="state" placeholder="State">
+                <button typoe="submit" name="submit" >Sign Up</button>
+        </form>
+    </section>
     <footer>
         <small>
             &copy; 2023 E-Shop. All rights reserved.
