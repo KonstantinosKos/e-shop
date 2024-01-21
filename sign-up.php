@@ -141,18 +141,43 @@
 
     <section class="form-floating mb-3">
         <form action="signup.php" method="post">
-                <input type="text" name="uid"  class="form-control" id="floatingInput" placeholder="Username">
-                <input type="password" name="password"  class="form-control" id="floatingInput" placeholder="Password">
-                <input type="text" name="firstname"  class="form-control" id="floatingInput" placeholder="First Name">
-                <input type="text" name="lastname"  class="form-control" id="floatingInput" placeholder="Last Name">
-                <input type="email" name="email"  class="form-control" id="floatingInput" placeholder="E-mail">
-                <input type="number" name="phonenumber"  class="form-control" id="floatingInput" placeholder="Phone Number">
-                <input type="text" name="street"  class="form-control" id="floatingInput" placeholder="Street & Number">
-                <input type="number" name="zipcode"  class="form-control" id="floatingInput" placeholder="Zip Code">
-                <input type="text" name="city"  class="form-control" id="floatingInput" placeholder="City">
-                <input type="text" name="state"  class="form-control" id="floatingInput" placeholder="State">
-                <button typoe="submit" name="submit" class="btn btn-primary" id="submit" >Sign Up</button>
+        <div class="row">
+                <div class="col">
+                    <input type="text" name="uid"  class="form-control" id="floatingInput" placeholder="Username" style="width: 30%;  margin-left:70%; margin-top: 2%;">
+                </div>
+                <div class="col">
+                    <input type="password" name="password"  class="form-control" id="floatingInput" placeholder="Password" style="width: 30%; margin-top: 2%;">
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <input type="text" name="firstname"  class="form-control" id="floatingInput" placeholder="First Name" style="width: 30%; margin-left:70%; margin-top: 2%;">
+                </div>
+                <div class="col">
+                    <input type="text" name="lastname"  class="form-control" id="floatingInput" placeholder="Last Name" style="width: 30%; margin-top: 2%;">
+                </div>
+            </div>
+            <input type="email" name="email"  class="form-control" id="floatingInput" placeholder="E-mail" style="width: 30%; margin-top: 2%; margin-left:35%;";>
+            <input type="number" name="phonenumber"  class="form-control" id="floatingInput" placeholder="Phone Number" style="width: 30%; margin-top: 2%; margin-left:35%;">
+            <input type="text" name="street"  class="form-control" id="floatingInput" placeholder="Street & Number" style="width: 30%; margin-top: 2%; margin-left:35%;">
+            <input type="number" name="zipcode"  class="form-control" id="floatingInput" placeholder="Zip Code" style="width: 30%; margin-top: 2%; margin-left:35%;">
+            <input type="text" name="city"  class="form-control" id="floatingInput" placeholder="City" style="width: 30%; margin-top: 2%; margin-left:35%;">
+            <input type="text" name="state"  class="form-control" id="floatingInput" placeholder="State" style="width: 30%; margin-top: 2%; margin-left:35%; ">
+            <button typoe="submit" name="submit" class="btn btn-primary" id="submit" style=" margin-top: 2%; margin-left:60%; ">Register</button>
         </form>
+        <?php
+        if (isset($_GET["error"])){
+            if ($_GET["error"] == "emptyinput"){
+                echo "<h3> Fill in all Fields!</p>";
+            } else if ($_GET["error"] == "invalidUid") {
+                echo "<p> Choose a proper username! </p>";
+            } else if ($_GET["error"] == "invalidEmail") {
+                echo "<p> Choose a proper E-mail!";
+            } else if ($_GET["error"] == "stmt failed"){
+                echo "<p> Something went wrong, try again!</p>";
+            }
+        }
+        ?>
     </section>
     <footer>
         <small>
