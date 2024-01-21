@@ -4,10 +4,10 @@ include("functions.php");
 if (isset($_POST["submit"])){
     
     $username = $_POST["uid"];
+    $password = $_POST["password"];
     $firstname = $_POST["firstname"];
     $lastname = $_POST["lastname"];
     $email = $_POST["email"];
-    $password = $_POST["password"];
     $phonenumber= $_POST["phonenumber"];
     $street = $_POST["street"];
     $zipcode = $_POST["zipcode"];
@@ -36,7 +36,7 @@ if (isset($_POST["submit"])){
         exit();
     }
 
-    createUser($conn, $username, $firstname, $lastname, $email, $password, $phonenumber, 
+    createUser($conn, $username, $password, $firstname, $lastname, $email, $phonenumber, 
                     $street, $zipcode, $city, $state);
 } else {
 

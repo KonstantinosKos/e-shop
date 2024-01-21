@@ -56,7 +56,7 @@ function uidExists($conn, $username, $email){
     }
 }
 
-function createUser($conn, $username, $password, $email, $firstName, $lastName, $phone, $address, $zip, $city, $country) {
+function createUser($conn, $username, $password, $firstName, $lastName, $email, $phonenumber, $street, $zipcode, $city, $country) {
     $sql = "INSERT INTO users (user_userName, user_password, user_firstName, user_lastName, user_email, user_phoneNumber, user_streetNumber, user_zipCode, user_city, user_state) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);
 
@@ -67,15 +67,14 @@ function createUser($conn, $username, $password, $email, $firstName, $lastName, 
 
     $hashedPassword = password_hash($password , PASSWORD_DEFAULT);
 
-    // mysqli_stmt_bind_param($stmt, "sssssisiss", $username, $password, $firstName, $lastName, $phoneNumber, $street, $zipcode, $city, $state);
-    mysqli_stmt_bind_param($stmt, "sssssisiss", $username, $hashedPassword, $firstName, $lastName, $email, $phoneNumber, $street, $zipcode, $city, $state);
-
+    mysqli_stmt_bind_param($stmt, "sssssisiss", $username, $hashedPassword, $firstName, $lastName, $email, $phonenumber, $street, $zipcode, $city, $country);
 
     mysqli_stmt_execute($stmt);
     mysqli_stmt_close($stmt);
     header("location: sign-up.php?error=none");
     exit();
 }
+
 
 
 
