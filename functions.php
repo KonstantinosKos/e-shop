@@ -75,7 +75,38 @@ function createUser($conn, $username, $password, $firstName, $lastName, $email, 
     exit();
 }
 
+function emptyInputLogin($username, $password){
+    $result;
+    if ( empty($username) || empty($password)){
+            $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
 
 
+function loginUser($conn, $username, $password){
+    $uidExists = uidExists($conn, $username, $email);
+
+    if ($uidExists === false){
+        header("location index.php?error=wronglogin");
+        exit();
+    }
+
+    $passwordHashed = $uidExists["user_password"];
+    $checkPassword = password_verify($password, $passwordHashed);
+
+    if ($checkPassword === false){
+        header("location: index.php?error=wronglogin");
+        exit();
+    } else if ( $checkPassword === true) {
+        session_start();
+        $_SESSION["userid"] = $uidExists["user_id"];
+        $_SESSION["username"] = $uidExists["user_userName"];
+        header("location: index.php");
+        exit();
+    }
+}
 
 ?>

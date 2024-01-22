@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -5,6 +9,8 @@
     <title>E-Shop</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.jpg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="path/to/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
@@ -50,22 +56,40 @@
                         }
                     });
                 </script>
-
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 10%;"
-                    id="login">
-                    Login / Sign-up
-                </button>
+                <?php
+                    if (isset($_SESSION["username"])){
+                        echo ' 
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check" viewBox="0 0 16 16">
+                                 <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+                                 <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
+                                </svg>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="my-profile.php">My Profile</a></li>
+                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                        
+                        </ul>
+                      </div>';
+                    } else {
+                        echo '
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 10%;"
+                            id="login">
+                                Login / Sign-up
+                        </button>';
+                    }
+                ?>
 
                 <!-- Login Modal -->
                 <div class="modal" id="myModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="container mt-3">
-                                <form action="login.php" method="POST">
+                                <form action="loginform.php" method="POST">
                                     <div class="mb-3 mt-3">
                                         <label for="email">Email:</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Enter email"
-                                            name="email">
+                                        <input type="text" class="form-control" id="email" placeholder="Enter email"
+                                            name="username">
                                     </div>
                                     <div class="mb-3">
                                         <label for="pwd">Password:</label>
@@ -78,12 +102,21 @@
                                         </label>
                                     </div>
                                     <div style="display: flex;">
-                                        <button type="submit" class="btn btn-primary" id="submit">Submit</button>
+                                        <button type="submit" class="btn btn-primary" id="submit" name="submit">Submit</button>
                                         <a href="sign-up.php" class="btn btn-success"
                                             style="height: 20%; margin-left: 2%;">Sign-up</a>
                                     </div>
                                 </form>
                             </div>
+                            <?php 
+                                if (isset($_GET["error"])){
+                                    if ($_GET["error"] == "emptyinput"){
+                                        echo "<p> Fill in all fields!";
+                                    } else if ($_GET["error"] == "wronglogin"){
+                                        echo "<p> incorrect login information!";
+                                    }
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
