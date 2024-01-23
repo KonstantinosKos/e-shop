@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -5,18 +9,19 @@
     <title>E-Shop</title>
     <link rel="icon" type="image/x-icon" href="/images/favicon.jpg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
     <link rel="stylesheet" href="path/to/bootstrap.min.css">
     <link rel="stylesheet" href="styles.css">
 </head>
 
-<body style = "background-color: rgb(216, 216, 216);">
-    <div >
+<body style="background-color: rgb(216, 216, 216);;">
+    <div>
         <div>
             <nav class="navbar navbar-expand-lg navbar-light" id="navigation">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="index.php"
-                        style="margin-left: 10%; color: rgb(255, 255, 255);">E-Shop</a>
+                    <a class="navbar-brand" href="index.php" style="margin-left: 10%; color: rgb(255, 255, 255);">E-Shop</a>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -32,39 +37,87 @@
                     <input class="form-control me-2" type="text" placeholder="Search" id="searchInput">
                     <button class="btn btn-primary" type="button" id="searchButton">Search</button>
                 </form>
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 10%;"
-                id="login">
-                Login / Sign-up
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        // Get the input element, button, and results container
+                        var searchInput = document.getElementById('searchInput');
+                        var searchButton = document.getElementById('searchButton');
 
-            </button>
+                        // Event listener for button click
+                        searchButton.addEventListener('click', function () {
+                            // Call the search function with the current input value
+                            search(searchInput.value);
+                        });
 
+                        // Function to perform the search
+                        function search(query) {
+                            // test that it works.
+                            window.alert('Search query: ' + query);
+                        }
+                    });
+                </script>
+                <?php
+                    if (isset($_SESSION["username"])){
+                        echo ' 
+                        <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 98px;">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-check" viewBox="0 0 16 16">
+                                 <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m1.679-4.493-1.335 2.226a.75.75 0 0 1-1.174.144l-.774-.773a.5.5 0 0 1 .708-.708l.547.548 1.17-1.951a.5.5 0 1 1 .858.514M11 5a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+                                 <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
+                                </svg>
+                                Settings
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end"><li><a class="dropdown-item" href="my-profile.php">My Profile</a></li>
+                        <li><a class="dropdown-item" href="logout.php">Logout</a></li>
+                        
+                        </ul>
+                      </div>';
+                    } else {
+                        echo '
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 10%;"
+                            id="login">
+                                Login / Sign-up
+                        </button>';
+                    }
+                ?>
 
                 <!-- Login Modal -->
                 <div class="modal" id="myModal">
                     <div class="modal-dialog">
                         <div class="modal-content">
                             <div class="container mt-3">
-                                <form action="/action_page.php">
+                                <form action="loginform.php" method="POST">
                                     <div class="mb-3 mt-3">
                                         <label for="email">Email:</label>
-                                        <input type="email" class="form-control" id="email" placeholder="Enter email"
-                                            name="email">
+                                        <input type="text" class="form-control" id="email" placeholder="Enter email"
+                                            name="username">
                                     </div>
                                     <div class="mb-3">
-                                        <label for="pwd">Passwosssrd:</label>
+                                        <label for="pwd">Password:</label>
                                         <input type="password" class="form-control" id="pwd"
-                                            placeholder="Enter password" name="pswd">
+                                            placeholder="Enter password" name="password">
                                     </div>
                                     <div class="form-check mb-3">
                                         <label class="form-check-label">
                                             <input class="form-check-input" type="checkbox" name="remember"> Remember me
                                         </label>
                                     </div>
-                                    <button type="submit" class="btn btn-primary" id="submit">Submit</button>
-
+                                    <div style="display: flex;">
+                                        <button type="submit" class="btn btn-primary" id="submit" name="submit">Submit</button>
+                                        <a href="sign-up.php" class="btn btn-success"
+                                            style="height: 20%; margin-left: 2%;">Sign-up</a>
+                                    </div>
                                 </form>
                             </div>
-
+                            <?php 
+                                if (isset($_GET["error"])){
+                                    if ($_GET["error"] == "emptyinput"){
+                                        echo "<p> Fill in all fields!";
+                                    } else if ($_GET["error"] == "wronglogin"){
+                                        echo "<p> incorrect login information!";
+                                    }
+                                }
+                            ?>
                         </div>
                     </div>
                 </div>
@@ -79,10 +132,9 @@
             </svg> <b>Products</b>
             <!-- Dropdown content -->
             <div id="categories-dropdown">
-                <!-- <img src="images/pc-display.jpg"/> -->
                 <a href="pc-laptops.php" class="category"><svg xmlns="http://www.w3.org/2000/svg"
-                                                               style=" margin-right: 5%;" width="16" height="16" fill="currentColor" class="bi bi-pc-display"
-                                                               viewBox="0 0 16 16">
+                        style=" margin-right: 5%;" width="16" height="16" fill="currentColor" class="bi bi-pc-display"
+                        viewBox="0 0 16 16">
                         <path
                             d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0m2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0M9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5M1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2z" />
                     </svg>Pc & Laptops</a>
@@ -116,10 +168,10 @@
                             d="M0 1.5A.5.5 0 0 1 .5 1h1a.5.5 0 0 1 .5.5V4h13.5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-.5.5H2v2.5a.5.5 0 0 1-1 0V2H.5a.5.5 0 0 1-.5-.5m5.5 4a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5M9 8a2.5 2.5 0 1 0 5 0 2.5 2.5 0 0 0-5 0" />
                         <path
                             d="M3 12.5h3.5v1a.5.5 0 0 1-.5.5H3.5a.5.5 0 0 1-.5-.5zm4 1v-1h4v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5" />
-                    </svg> Hardware</a>
+                    </svg>Hardware</a>
                 <a href="printers.php" class="category"> <svg xmlns="http://www.w3.org/2000/svg"
-                                                              style=" margin-right: 5%;" width="16" height="16" fill="currentColor" class="bi bi-printer"
-                                                              viewBox="0 0 16 16">
+                        style=" margin-right: 5%;" width="16" height="16" fill="currentColor" class="bi bi-printer"
+                        viewBox="0 0 16 16">
                         <path d="M2.5 8a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1" />
                         <path
                             d="M5 1a2 2 0 0 0-2 2v2H2a2 2 0 0 0-2 2v3a2 2 0 0 0 2 2h1v1a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2v-1h1a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-1V3a2 2 0 0 0-2-2zM4 3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2H4zm1 5a2 2 0 0 0-2 2v1H2a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3a1 1 0 0 1-1 1h-1v-1a2 2 0 0 0-2-2zm7 2v3a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1" />
@@ -140,7 +192,29 @@
         </script>
 
     </div>
-    <footer>
+    <div class="row">
+        <div class="col-sm-6">
+                <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" style="margin-left:50%; margin-top:10%;" fill="currentColor" class="bi bi-cart-check" viewBox="0 0 16 16">
+                <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
+                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+                </svg>
+        </div>
+        
+        <div class="col-sm-6">
+            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" style="margin-left:30%; margin-top:10%; fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9z"/>
+                <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zm3.915 10L3.102 4h10.796l-1.313 7zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
+            </svg>
+        </div>
+    </div>
+    <div class="row" >
+        <div class="col-sm-6" style="">
+            <a type="button" class="btn btn-primary" style="width: 30%; margin-left:40%; margin-top:5%;" href="orders.php">Orders</a>
+        </div>
+        <div class="col-sm-6" style="">
+            <a type="button" class="btn btn-primary" style="width: 30%;margin-left:20%; margin-top:5%;" href="cart.php">View Cart</a>
+        </div>
+    <footer style="position: fixed; bottom: 0;">
         <small>
             &copy; 2023 E-Shop. All rights reserved.
         </small>

@@ -21,7 +21,7 @@
         <div>
             <nav class="navbar navbar-expand-lg navbar-light" id="navigation">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#" style="margin-left: 10%; color: rgb(255, 255, 255);">E-Shop</a>
+                    <a class="navbar-brand" href="index.php" style="margin-left: 10%; color: rgb(255, 255, 255);">E-Shop</a>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
