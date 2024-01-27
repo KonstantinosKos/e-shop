@@ -195,41 +195,41 @@
     </div>
 
     <section class="form-floating mb-3">
-        <form action="entryproduct.php" method="post" enctype="multipart/form-data">
-            <div class="row">
-                <div class="col">
-                    <input type="text" name="uid"  class="form-control" id="floatingInput" placeholder="Product Name" style="width: 30%;  margin-left:70%; margin-top: 2%;">
-                </div>
-                <div class="col">
-                    <input type="number" name="price"  class="form-control" id="floatingInput" placeholder="Price"  style="width: 30%; margin-top: 2%;">
-                </div>
+    <form action="entryproduct.php" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col">
+                <input type="text" name="uid" class="form-control" id="productName" placeholder="Product Name" style="width: 30%; margin-left:70%; margin-top: 2%;">
             </div>
-            <input type="file" name="image"  class="form-control" id="floatingInput" placeholder="Upload Picture" style="width: 30%; margin-left:70%; margin-top: 2%; margin-left:35%;">
-            <select class= "form-select" name="category" aria-label="Default select example" id="floatingInput" placeholder="Category" style="width: 30%; margin-top: 2%; margin-left:35%;">
-                <option selected value ="pclaptop"> Pc & Laptops </option>
-                <option value="gaming"> Gaming </option>
-                <option value= "mobiletablets"> Mobile & Tablets </option>
-                <option value= "imagesound"> Image & Sound </option>
-                <option value= "hardware"> Hardware </option>
-                <option value= "printers"> Printers </option>
-             </select>
-            <input type="text" name="description"  class="form-control" id="floatingInput" placeholder="Description" style="width: 30%; margin-top: 2%; margin-left:35%; ">
-            <button typoe="submit" name="submit" class="btn btn-primary" id="submit" style=" margin-top: 2%; margin-left:59%; ">Add product</button>
-        </form>
-        <?php
-        if (isset($_GET["error"])){
-            if ($_GET["error"] == "emptyinput"){
-                echo "<h3> Fill in all Fields!</p>";
-            } else if ($_GET["error"] == "invalidUid") {
-                echo "<p> Choose a proper username! </p>";
-            } else if ($_GET["error"] == "invalidEmail") {
-                echo "<p> Choose a proper E-mail!";
-            } else if ($_GET["error"] == "stmt failed"){
-                echo "<p> Something went wrong, try again!</p>";
-            }
+            <div class="col">
+                <input type="number" name="price" class="form-control" id="productPrice" placeholder="Price" style="width: 30%; margin-top: 2%;">
+            </div>
+        </div>
+        <input type="file" name="image" class="form-control" id="productImage" placeholder="Upload Picture" style="width: 30%; margin-left:70%; margin-top: 2%; margin-left:35%;">
+        <select class="form-select" name="category" aria-label="Category" id="productCategory" style="width: 30%; margin-top: 2%; margin-left:35%;">
+            <option value="pclaptop">Pc & Laptops</option>
+            <option value="gaming">Gaming</option>
+            <option value="mobiletablets">Mobile & Tablets</option>
+            <option value="imagesound">Image & Sound</option>
+            <option value="hardware">Hardware</option>
+            <option value="printers">Printers</option>
+        </select>
+        <input type="text" name="description" class="form-control" id="productDescription" placeholder="Description" style="width: 30%; margin-top: 2%; margin-left:35%;">
+        <button type="submit" name="submit" class="btn btn-primary" id="submit" style="margin-top: 2%; margin-left:59%;">Add product</button>
+    </form>
+    <?php
+    if (isset($_GET["error"])){
+        if ($_GET["error"] == "emptyinput"){
+            echo "<h3>Fill in all Fields!</h3>";
+        } else if ($_GET["error"] == "invalidUid") {
+            echo "<p>Choose a proper username!</p>";
+        } else if ($_GET["error"] == "invalidEmail") {
+            echo "<p>Choose a proper E-mail!</p>";
+        } else if ($_GET["error"] == "stmtfailed"){
+            echo "<p>Something went wrong, try again!</p>";
         }
-        ?>
-    </section>
+    }
+    ?>
+</section>
     <footer style="position: fixed; bottom: 0;">
         <small>
             &copy; 2023 E-Shop. All rights reserved.

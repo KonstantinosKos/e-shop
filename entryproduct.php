@@ -2,7 +2,7 @@
 include("config.php");
 include("functions.php");
 
-if (isset($_POST["addproduct"])){
+if (isset($_POST["submit"])){
     
     $productname = $_POST["uid"];
     $description= $_POST["description"];
@@ -15,7 +15,7 @@ if (isset($_POST["addproduct"])){
     move_uploaded_file($tempname, $folder);
 
     
-    if ( emptyInputProduct($productid, $productname, $description, $folder, $price) !== false){
+    if ( emptyInputProduct( $productname, $description, $folder, $price) !== false){
         header("location: add-prodduct.php?error=emptyinput");
         exit();
     }
