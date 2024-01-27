@@ -25,10 +25,10 @@
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link" href="my-profile.php" style="color: white;">My Profile</a>
+                                <a class="nav-link" href="my-profile.php" style="color: white;">Add User/Product</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="contact-us.php" style="color: white;">Contact us</a>
+                                <a class="nav-link" href="contact-us.php" style="color: white;">Show User/Products</a>
                             </li>
                         </ul>
                     </div>
@@ -195,30 +195,26 @@
     </div>
 
     <section class="form-floating mb-3">
-        <form action="signup.php" method="post">
-        <div class="row">
-                <div class="col">
-                    <input type="text" name="uid"  class="form-control" id="floatingInput" placeholder="Username" style="width: 30%;  margin-left:70%; margin-top: 2%;">
-                </div>
-                <div class="col">
-                    <input type="password" name="password"  class="form-control" id="floatingInput" placeholder="Password" style="width: 30%; margin-top: 2%;">
-                </div>
-            </div>
+        <form action="entryproduct.php" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col">
-                    <input type="text" name="firstname"  class="form-control" id="floatingInput" placeholder="First Name" style="width: 30%; margin-left:70%; margin-top: 2%;">
+                    <input type="text" name="uid"  class="form-control" id="floatingInput" placeholder="Product Name" style="width: 30%;  margin-left:70%; margin-top: 2%;">
                 </div>
                 <div class="col">
-                    <input type="text" name="lastname"  class="form-control" id="floatingInput" placeholder="Last Name" style="width: 30%; margin-top: 2%;">
+                    <input type="number" name="price"  class="form-control" id="floatingInput" placeholder="Price"  style="width: 30%; margin-top: 2%;">
                 </div>
             </div>
-            <input type="email" name="email"  class="form-control" id="floatingInput" placeholder="E-mail" style="width: 30%; margin-top: 2%; margin-left:35%;";>
-            <input type="number" name="phonenumber"  class="form-control" id="floatingInput" placeholder="Phone Number" style="width: 30%; margin-top: 2%; margin-left:35%;">
-            <input type="text" name="street"  class="form-control" id="floatingInput" placeholder="Street & Number" style="width: 30%; margin-top: 2%; margin-left:35%;">
-            <input type="number" name="zipcode"  class="form-control" id="floatingInput" placeholder="Zip Code" style="width: 30%; margin-top: 2%; margin-left:35%;">
-            <input type="text" name="city"  class="form-control" id="floatingInput" placeholder="City" style="width: 30%; margin-top: 2%; margin-left:35%;">
-            <input type="text" name="state"  class="form-control" id="floatingInput" placeholder="State" style="width: 30%; margin-top: 2%; margin-left:35%; ">
-            <button typoe="submit" name="submit" class="btn btn-primary" id="submit" style=" margin-top: 2%; margin-left:60%; ">Register</button>
+            <input type="file" name="image"  class="form-control" id="floatingInput" placeholder="Upload Picture" style="width: 30%; margin-left:70%; margin-top: 2%; margin-left:35%;">
+            <select class= "form-select" name="category" aria-label="Default select example" id="floatingInput" placeholder="Category" style="width: 30%; margin-top: 2%; margin-left:35%;">
+                <option selected value ="pclaptop"> Pc & Laptops </option>
+                <option value="gaming"> Gaming </option>
+                <option value= "mobiletablets"> Mobile & Tablets </option>
+                <option value= "imagesound"> Image & Sound </option>
+                <option value= "hardware"> Hardware </option>
+                <option value= "printers"> Printers </option>
+             </select>
+            <input type="text" name="description"  class="form-control" id="floatingInput" placeholder="Description" style="width: 30%; margin-top: 2%; margin-left:35%; ">
+            <button typoe="submit" name="submit" class="btn btn-primary" id="submit" style=" margin-top: 2%; margin-left:59%; ">Add product</button>
         </form>
         <?php
         if (isset($_GET["error"])){
@@ -234,7 +230,7 @@
         }
         ?>
     </section>
-    <footer>
+    <footer style="position: fixed; bottom: 0;">
         <small>
             &copy; 2023 E-Shop. All rights reserved.
         </small>

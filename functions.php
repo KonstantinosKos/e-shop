@@ -109,4 +109,92 @@ function loginUser($conn, $username, $password){
     }
 }
 
+
+//product functions
+
+function emptyInputProduct( $productname, $description, $picture, $price){
+    $result;
+    if ( empty($productname) || empty($description) 
+        || empty($picture) || empty($price)){
+            $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+function prodIdExists($conn, $productname){
+    $sql = "SELECT * FROM products WHERE product_name = ? ;";
+    $stmt = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql)){
+        header("location: add-product.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "s", $productname);
+    mysqli_stmt_execute($stmt);
+
+    $resultData = mysqli_stmt_get_result($stmt);
+
+    mysqli_stmt_close($stmt); 
+
+    if($row = mysqli_fetch_assoc($resultData)){
+        return $row;
+    } else {
+        $result = false;
+        return $result;
+    }
+}
+
+function createProd1($conn,  $productname, $description, $folder, $price, $category) {
+    $sql = "INSERT INTO products (product_name, product_description, product_picture, product_price) VALUES ( ?, ?, ?, ?)";
+    $stmt = mysqli_stmt_init($conn);
+
+    $sql2 = "INSERT INTO categories (category_name) VALUES (?)";
+    $stmt2 = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt, $sql) || !mysqli_stmt_prepare($stmt2, $sql2)) {
+        header("location: add-product.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt, "ssbi", $productname, $description, $folder, $price);
+    mysqli_stmt_bind_param($stmt2, "s", $category);
+
+    mysqli_stmt_execute($stmt);
+    mysqli_stmt_execute($stmt2);
+
+    mysqli_stmt_close($stmt);
+    mysqli_stmt_close($stmt2);
+
+    header("location: add-product.php?error=none");
+    exit();
+}
+
+function createProd($conn, $productname, $description, $picture, $price, $category) {
+    $sql_product = "INSERT INTO products (product_name, product_description, product_picture, product_price) VALUES (?, ?, ?, ?)";
+    $sql_category = "INSERT INTO categories (category_name) VALUES (?)";
+
+    $stmt_product = mysqli_stmt_init($conn);
+    $stmt_category = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt_product, $sql_product) || !mysqli_stmt_prepare($stmt_category, $sql_category)) {
+        header("location: add-product.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt_product, "ssds", $productname, $description, $picture, $price);
+    mysqli_stmt_execute($stmt_product);
+    mysqli_stmt_close($stmt_product);
+
+    mysqli_stmt_bind_param($stmt_category, "s", $category);
+    mysqli_stmt_execute($stmt_category);
+    mysqli_stmt_close($stmt_category);
+
+    header("location: add-product.php?error=none");
+    exit();
+}
+?>
+
 ?>
