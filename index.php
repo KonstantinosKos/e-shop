@@ -58,6 +58,11 @@
                 </script>
                 <?php
                     if (isset($_SESSION["username"])){
+                        if ($_SESSION["username"] == 'admin') {
+                            // Redirect the admin to a different PHP file
+                            header("Location: adduserproduct.php");
+                            exit(); // Ensure no further code execution after the redirect
+                        }                    
                         echo ' 
                         <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 98px;">

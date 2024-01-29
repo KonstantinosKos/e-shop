@@ -24,12 +24,25 @@
                     <a class="navbar-brand" href="index.php" style="margin-left: 10%; color: rgb(255, 255, 255);">E-Shop</a>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="my-profile.php" style="color: white;">My Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact-us.php" style="color: white;">Contact us</a>
-                            </li>
+                        <?php 
+                                if ($_SESSION["username"] == 'admin') {   
+                                    echo 
+                                    '<li class="nav-item">
+                                        <a class="nav-link" href="adduserproduct.php" style="color: white;">Add User/Product</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="showuserproduct.php" style="color: white;">Show User/Product</a>
+                                    </li>';
+                                } else { 
+                                    echo '             
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="my-profile.php" style="color: white;">My Profile</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="contact-us.php" style="color: white;">Contact us</a>
+                                    </li>';
+                                }
+                            ?>
                         </ul>
                     </div>
                 </div>
