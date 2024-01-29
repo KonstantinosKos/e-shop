@@ -112,10 +112,10 @@ function loginUser($conn, $username, $password){
 
 //product functions
 
-function emptyInputProduct( $productname, $description, $picture, $price){
+function emptyInputProduct( $productname, $description, $image, $price){
     $result;
     if ( empty($productname) || empty($description) 
-        || empty($picture) || empty($price)){
+        || empty($image) || empty($price)){
             $result = true;
     } else {
         $result = false;
@@ -147,7 +147,7 @@ function prodIdExists($conn, $productname){
     }
 }
 
-function createProd1($conn,  $productname, $description, $folder, $price, $category) {
+function createProd1($conn,  $productname, $description, $image, $price, $category) {
     $sql = "INSERT INTO products (product_name, product_description, product_picture, product_price) VALUES ( ?, ?, ?, ?)";
     $stmt = mysqli_stmt_init($conn);
 
@@ -159,7 +159,7 @@ function createProd1($conn,  $productname, $description, $folder, $price, $categ
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt, "ssbi", $productname, $description, $folder, $price);
+    mysqli_stmt_bind_param($stmt, "ssbi", $productname, $description, $image, $price);
     mysqli_stmt_bind_param($stmt2, "s", $category);
 
     mysqli_stmt_execute($stmt);
@@ -172,7 +172,7 @@ function createProd1($conn,  $productname, $description, $folder, $price, $categ
     exit();
 }
 
-function createProd($conn, $productname, $description, $picture, $price, $category) {
+function createProd($conn, $productname, $description, $imgContent, $price, $category) {
     $sql_product = "INSERT INTO products (product_name, product_description, product_picture, product_price) VALUES (?, ?, ?, ?)";
     $sql_category = "INSERT INTO categories (product_id, category_name) VALUES (?, ?)";
 
@@ -184,7 +184,7 @@ function createProd($conn, $productname, $description, $picture, $price, $catego
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt_product, "ssbi", $productname, $description, $picture, $price);
+    mysqli_stmt_bind_param($stmt_product, "sssi", $productname, $description, $imgContent, $price);
     mysqli_stmt_execute($stmt_product);
     $productId = mysqli_insert_id($conn); // Get the last inserted product ID
 

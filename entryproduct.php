@@ -9,13 +9,11 @@ if (isset($_POST["submit"])){
     $price= $_POST["price"];
     $category = $_POST["category"];
 
-    $file = $_FILES["image"]["name"];
-    $tempname = $_FILES["image"]["tmp_name"];
-    $folder = "uploadimg/".$file;
-    move_uploaded_file($tempname, $folder);
+    $image = $_FILES['image']['tmp_name'];
+    $imgContent = file_get_contents($image);
 
     
-    if ( emptyInputProduct( $productname, $description, $folder, $price) !== false){
+    if ( emptyInputProduct( $productname, $description, $imgContent, $price) !== false){
         header("location: add-prodduct.php?error=emptyinput");
         exit();
     }
@@ -25,7 +23,7 @@ if (isset($_POST["submit"])){
         exit();
     }
 
-    createProd($conn,  $productname, $description, $folder, $price, $category);
+    createProd($conn,  $productname, $description, $imgContent, $price, $category);
 } else {
 
     header("location: add-product.php");
