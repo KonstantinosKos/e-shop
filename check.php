@@ -273,7 +273,7 @@
         </div>
   </div>
 
-    <footer style= " margin-top : 2%;">
+  <footer style="position: fixed; bottom: 0;">
         <small>
             &copy; 2023 Ecart-Shop. All rights reserved.
         </small>
