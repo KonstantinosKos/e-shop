@@ -18,7 +18,7 @@ if (isset($_POST["submit"])){
         exit();
     }
 
-    if (prodIdExists($conn, $productname, $productid)){
+    if (prodIdExists($conn, $productname)){
         header("location: add-product.php?error=productnametaken");
         exit();
     }

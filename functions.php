@@ -147,31 +147,6 @@ function prodIdExists($conn, $productname){
     }
 }
 
-function createProd1($conn,  $productname, $description, $image, $price, $category) {
-    $sql = "INSERT INTO products (product_name, product_description, product_picture, product_price) VALUES ( ?, ?, ?, ?)";
-    $stmt = mysqli_stmt_init($conn);
-
-    $sql2 = "INSERT INTO categories (category_name) VALUES (?)";
-    $stmt2 = mysqli_stmt_init($conn);
-
-    if (!mysqli_stmt_prepare($stmt, $sql) || !mysqli_stmt_prepare($stmt2, $sql2)) {
-        header("location: add-product.php?error=stmtfailed");
-        exit();
-    }
-
-    mysqli_stmt_bind_param($stmt, "ssbi", $productname, $description, $image, $price);
-    mysqli_stmt_bind_param($stmt2, "s", $category);
-
-    mysqli_stmt_execute($stmt);
-    mysqli_stmt_execute($stmt2);
-
-    mysqli_stmt_close($stmt);
-    mysqli_stmt_close($stmt2);
-
-    header("location: add-product.php?error=none");
-    exit();
-}
-
 function createProd($conn, $productname, $description, $imgContent, $price, $category) {
     $sql_product = "INSERT INTO products (product_name, product_description, product_picture, product_price) VALUES (?, ?, ?, ?)";
     $sql_category = "INSERT INTO categories (product_id, category_name) VALUES (?, ?)";
