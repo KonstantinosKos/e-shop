@@ -24,12 +24,25 @@
                     <a class="navbar-brand" href="index.php" style="margin-left: 10%; color: rgb(255, 255, 255);">E-Shop</a>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                            <li class="nav-item">
-                                <a class="nav-link" href="my-profile.php" style="color: white;">My Profile</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="contact-us.php" style="color: white;">Contact us</a>
-                            </li>
+                            <?php 
+                                if ($_SESSION["username"] == 'admin') {   
+                                    echo 
+                                    '<li class="nav-item">
+                                        <a class="nav-link" href="adduserproduct.php" style="color: white;">Add User/Product</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="showuserproduct.php" style="color: white;">Show User/Product</a>
+                                    </li>';
+                                } else { 
+                                    echo '             
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="my-profile.php" style="color: white;">My Profile</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="contact-us.php" style="color: white;">Contact us</a>
+                                    </li>';
+                                }
+                            ?>
                         </ul>
                     </div>
                 </div>
@@ -191,28 +204,41 @@
             }
         </script>
 
+        <?php
+        include ("config.php");
+        $sql = "SELECT product_name, product_description, product_picture, product_price from products";
+        $result = $conn -> query($sql);
+
+        if ($result -> num_rows > 0){
+            echo '<div style="display: flex; flex-wrap: wrap; justify-content: space-between;  margin-left:8%; margin-top:3%;">';
+            while ($row = $result->fetch_assoc()) {
+                echo '<div style="flex-basis: calc(33.33% ); margin-bottom: 20px;">
+                        <div class="card" style=width:50%;>
+                            <div class="card-body">
+                                <h5 class="card-title"> ' . $row["product_name"] .'</h5>
+                                <img class="card-img-top" src="data:image/jpeg;base64,'.base64_encode($row["product_picture"]).'" style="width:10%">
+                                <p class="card-text">' . $row["product_description"] .'</p>
+                                <p class="card-text">Price: ' . $row["product_price"] .'</p>
+                                <button typoe="submit" name="submit" class="btn btn-primary" id="submit" style="width:50%; margin-left:20%; ">Add Cart</button>
+ 
+                            </div>
+                        </div>
+                    </div>';
+            }
+            echo '</div>'; // Close the card-container
+        } else {
+            echo "no results";
+        }
+
+        ?>
+
     </div>
-    <div class="row" style = "margin-left: 30%;">
-        <div class="col">
-        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" fill="currentColor" class="bi bi-person-fill-add" viewBox="0 0 16 16" style = "margin-top:10%;">
-            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0"/>
-            <path d="M2 13c0 1 1 1 1 1h5.256A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1 1.544-3.393Q8.844 9.002 8 9c-5 0-6 3-6 4"/>
-        </svg>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#myModal" style="width: 10%;"
-                            id="login">
-                                Login / Sign-up
-                        </button>
-        </div>
-        <div class="col">
-            Column
-        </div>
-    </div>
-    <footer>
+    <footer style="position: fixed; bottom: 0;">
         <small>
             &copy; 2023 E-Shop. All rights reserved.
         </small>
     </footer>
-
 </body>
 
 </html>
+
