@@ -216,11 +216,10 @@
                         <div class="card" style=width:50%;>
                             <div class="card-body">
                                 <h5 class="card-title"> ' . $row["product_name"] .'</h5>
-                                <img class="card-img-top" src="data:image/jpeg;base64,'.base64_encode($row["product_picture"]).'" style="width:10%">
-                                <p class="card-text">' . $row["product_description"] .'</p>
-                                <p class="card-text">Price: ' . $row["product_price"] .'</p>
-                                <button typoe="submit" name="submit" class="btn btn-primary" id="submit" style="width:50%; margin-left:20%; ">Add Cart</button>
- 
+                                <img class="card-img-top" src="data:image/jpeg;base64,'.base64_encode($row["product_picture"]).'" style="width:50%; height: 50%;">
+                                <p class="card-text">Description: ' . $row["product_description"] .' </p>
+                                <p class="card-text">Price: €' . $row["product_price"] .' </p>
+                                <button typoe="submit" name="submit" class="btn btn-primary" id="submit" style="width:50%; margin-left:20%; ">Add to Cart</button>
                             </div>
                         </div>
                     </div>';
@@ -233,7 +232,7 @@
         ?>
 
     </div>
-    <footer style="position: fixed; bottom: 0;">
+    <footer >
         <small>
             &copy; 2023 E-Shop. All rights reserved.
         </small>
@@ -241,4 +240,3 @@
 </body>
 
 </html>
-

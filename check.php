@@ -7,7 +7,7 @@
 
 <head>
     <title>E-Shop</title>
-    <link rel="icon" type="image/x-icon" href="/images/favicon.jpg">
+    <link rel="icon" type="image/x-icon" href="/images/logo.jpg">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.7/dist/umd/popper.min.js"></script>
@@ -260,8 +260,9 @@
                             <input type="text" class="form-control" style=" width:60%;" id="credit_cardId " name="credit_cardId " placeholder="**** **** **** ****">
 
                             <label for="credit_cardExpiration" style = "margin-top:2%;">Expiration Date</label>
-                            <input type="date" class="form-control" style=" width:60%;" id="credit_cardExpiration" name="credit_cardExpiration" placeholder="M/Y">         
-                            <button typoe="submit"  name="submit" class="btn btn-primary" id="submit" style=" margin-top: 5%; margin-left:45%; ">Checkout</button>
+                            <input type="date" class="form-control" style=" width:60%;" id="credit_cardExpiration" name="credit_cardExpiration" placeholder="M/Y">      
+                            <br>   
+                            <button typoe="submit"  name="submit" class="btn btn-primary" id="submit" style=" margin-top: 5%; width:60%; margin-left:0%; ">Checkout</button>
                         </div>
                     </div>
                     
@@ -282,4 +283,3 @@
 </body>
 
 </html>
-  

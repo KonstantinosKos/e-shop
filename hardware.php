@@ -203,6 +203,36 @@
                 document.getElementById("categories-dropdown").style.display = "none";
             }
         </script>
+        
+        <?php
+            include ("config.php");
+            $sql = "SELECT p.product_name, p.product_description, p.product_picture, p.product_price 
+                        FROM products p
+                        INNER JOIN product_categories pc ON p.product_id = pc.product_id
+                        INNER JOIN categories c ON pc.category_id = c.category_id
+                        WHERE c.category = 'hardware'";
+            $result = $conn->query($sql);
+
+            if ($result->num_rows > 0) {
+                echo '<div style="display: flex; flex-wrap: wrap; justify-content: space-between;  margin-left:8%; margin-top:3%;">';
+                while ($row = $result->fetch_assoc()) {
+                    echo '<div style="flex-basis: calc(33.33% ); margin-bottom: 20px;">
+                            <div class="card" style=width:50%;>
+                                <div class="card-body">
+                                    <h5 class="card-title"> ' . $row["product_name"] . '</h5>
+                                    <img class="card-img-top" src="data:image/jpeg;base64,' . base64_encode($row["product_picture"]) . '" style="width:50%; height: 50%;">
+                                    <p class="card-text">Description: ' . $row["product_description"] . ' </p>
+                                    <p class="card-text">Price: €' . $row["product_price"] . ' </p>
+                                    <button type="submit" name="submit" class="btn btn-primary" id="submit" style="width:50%; margin-left:20%; ">Add to Cart</button>
+                                </div>
+                            </div>
+                        </div>';
+                }
+                echo '</div>'; // Close the card-container
+            } else {
+                echo "no results";
+            }
+        ?>
 
     </div>
     <footer>
