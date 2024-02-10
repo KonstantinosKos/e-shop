@@ -205,35 +205,38 @@
         </script>
 
     </div>
-    <table class="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">Handle</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th scope="row">1</th>
-      <td>Mark</td>
-      <td>Otto</td>
-      <td>@mdo</td>
-    </tr>
-    <tr>
-      <th scope="row">2</th>
-      <td>Jacob</td>
-      <td>Thornton</td>
-      <td>@fat</td>
-    </tr>
-    <tr>
-      <th scope="row">3</th>
-      <td colspan="2">Larry the Bird</td>
-      <td>@twitter</td>
-    </tr>
-  </tbody>
-</table>
+    <section class="form-floating mb-3">
+
+        <h1 style="margin:1%; text-align:center;"> Customer Orders </h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">First Name</th>
+                        <th scope="col">Last Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">City</th>
+                        <th scope="col">State</th>
+                        <th scope="col">Zip Code</th>
+                        <th scope="col">Products</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">0</th>
+                        <td>John</td>
+                        <td>Nikolaou</td>
+                        <td>Example@gmail.com</td>
+                        <td>Akadimias 7</td>
+                        <td>Athens</td>
+                        <td>Attiki</td>
+                        <td>1234</td>
+                        <td>Iphone 15</td>
+                    </tr>
+                </tbody>
+        </table>
+    </section>
    
     <footer style="position: fixed; bottom: 0;">
         <small>

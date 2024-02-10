@@ -192,6 +192,43 @@
         </script>
 
     </div>
+    <?php
+        include("config.php");
+
+        $user_id = $_SESSION['user_id']; 
+
+        $sql = "SELECT c.product_id, p.product_name, p.price, c.quantity
+                FROM cart c
+                JOIN products p ON c.product_id = p.product_id
+                WHERE c.user_id = ?";
+        $result = $conn->query($sql);
+        if ($result -> num_rows > 0){
+            echo '<section class="form-floating mb-3">
+
+            <h1 style="margin:1%; text-align:center;"> Products </h1>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Product Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row">0</th>
+                            <td>'.$row["product_name"].'</td>
+                            <td>'.$row["product_price"].'</td>
+                            <td>'.$row["quantity"].'</td>
+                        </tr>
+                    </tbody>
+            </table>
+        </section>'
+        }
+
+    ?>
+
 
    
     <footer style="position: fixed; bottom: 0;">

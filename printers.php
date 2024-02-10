@@ -211,7 +211,7 @@
             INNER JOIN categories c ON p.category_id = c.category_id
             WHERE category_name = 'printers'";
     
-    $result = $conn->query($sql);
+            $result = $conn->query($sql);
 
             if ($result -> num_rows > 0){
                 echo '<div style="display: flex; flex-wrap: wrap; justify-content: space-between;  margin-left:8%; margin-top:3%;">';

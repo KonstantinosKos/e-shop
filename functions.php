@@ -181,4 +181,44 @@ function createProd($conn, $productname, $description, $imgContent, $price, $cat
     exit();
 }
 
+
+//order functions
+
+function emptyInputOrder( $firstname, $lastname, $email, $address, $city, $state, $zipcode, $creditcardid ){
+    $result;
+
+    if ( empty($firstname) || empty($lastname) || empty($email) || empty($address)
+    || empty($city) || empty($state) || empty($zipcode) || empty($creditcardid)){
+            $result = true;
+    } else {
+        $result = false;
+    }
+    return $result;
+}
+
+
+function createOrder($conn, $firstname, $lastname, $email, $address, $city, $state, $zipcode, $credidcardid) {
+    $sql_orders = "INSERT INTO orders (order_id, product_id, user_id, credit_cardId, quantity, price, order_number) VALUES (?, ?, ?, ?, ?, ?, ? )";
+    $sql_users = "INSERT INTO users (user_firstName, user_lastName, user_email, user_streetNumber, user_city, user_state, user_zipCode	 ) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    $stmt_orders = mysqli_stmt_init($conn);
+    $stmt_users = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt_orders, $sql_users) || !mysqli_stmt_prepare($stmt_orders, $sql_orders)) {
+        header("location: order.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt_orders, "i", $credidcardid);
+    mysqli_stmt_execute($stmt_orders);
+   // $productId = mysqli_insert_id($conn); // Get the last inserted product ID
+
+    mysqli_stmt_bind_param($stmt_users, "ssssssi", $firstname, $lastname, $email, $address, $city, $state, $zipcode);
+    mysqli_stmt_execute($stmt_users);
+    mysqli_stmt_close($stmt_users);
+    mysqli_stmt_close($stmt_orders);
+
+    header("location: orders.php?error=none");
+    exit();
+}
 ?>
