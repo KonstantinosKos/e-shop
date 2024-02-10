@@ -206,10 +206,12 @@
         
         <?php
             include ("config.php");
-            $sql = "SELECT product_id, product_name, product_description, product_picture, product_price FROM products
-                INNER JOIN categories c ON product_id = c.product_id
-                WHERE c.category = 'pclaptop'";
-            $result = $conn -> query($sql);
+            $sql = "SELECT p.product_id, p.product_name, p.product_description, p.product_picture, p.product_price 
+            FROM products p
+            INNER JOIN categories c ON p.category_id = c.category_id
+            WHERE category_name = 'pclaptop'";
+    
+    $result = $conn->query($sql);
 
             if ($result -> num_rows > 0){
                 echo '<div style="display: flex; flex-wrap: wrap; justify-content: space-between;  margin-left:8%; margin-top:3%;">';

@@ -148,27 +148,37 @@ function prodIdExists($conn, $productname){
 }
 
 function createProd($conn, $productname, $description, $imgContent, $price, $category) {
-    $sql_product = "INSERT INTO products (product_name, product_description, product_picture, product_price) VALUES (?, ?, ?, ?)";
-    $sql_category = "INSERT INTO categories (product_id, category_name) VALUES (?, ?)";
-
-    $stmt_product = mysqli_stmt_init($conn);
+    // Prepare and execute category insertion
+    $sql_category = "INSERT INTO categories (category_name) VALUES (?)";
     $stmt_category = mysqli_stmt_init($conn);
 
-    if (!mysqli_stmt_prepare($stmt_product, $sql_product) || !mysqli_stmt_prepare($stmt_category, $sql_category)) {
+    if (!mysqli_stmt_prepare($stmt_category, $sql_category)) {
         header("location: add-product.php?error=stmtfailed");
         exit();
     }
 
-    mysqli_stmt_bind_param($stmt_product, "sssi", $productname, $description, $imgContent, $price);
-    mysqli_stmt_execute($stmt_product);
-    $productId = mysqli_insert_id($conn); // Get the last inserted product ID
-
-    mysqli_stmt_bind_param($stmt_category, "is", $productId, $category);
+    mysqli_stmt_bind_param($stmt_category, "s", $category);
     mysqli_stmt_execute($stmt_category);
+
+    // Get the category ID of the newly inserted category
+    $categoryId = mysqli_insert_id($conn);
     mysqli_stmt_close($stmt_category);
+
+    // Prepare and execute product insertion
+    $sql_product = "INSERT INTO products (product_name, product_description, product_picture, product_price, category_id) VALUES (?, ?, ?, ?, ?)";
+    $stmt_product = mysqli_stmt_init($conn);
+
+    if (!mysqli_stmt_prepare($stmt_product, $sql_product)) {
+        header("location: add-product.php?error=stmtfailed");
+        exit();
+    }
+
+    mysqli_stmt_bind_param($stmt_product, "sssii", $productname, $description, $imgContent, $price, $categoryId);
+    mysqli_stmt_execute($stmt_product);
     mysqli_stmt_close($stmt_product);
 
     header("location: add-product.php?error=none");
     exit();
 }
+
 ?>
