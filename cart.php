@@ -195,7 +195,6 @@
     <?php
         include("config.php");
 
-        $user_id = $_SESSION['user_id']; 
         $totalPrice = 0;
         $sql = "SELECT c.product_id,p.product_picture,p.product_name, c.price, c.quantity
                 FROM cart c

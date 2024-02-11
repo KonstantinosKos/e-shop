@@ -229,7 +229,6 @@
                                     <p class="card-text">Price: €' . $row["product_price"] .' </p>
                                     <form action="add_to_cart.php" method="POST">
                                         <input type="hidden" name="username" value="' .$_SESSION["username"] . '">
-                                        <input type="hidden" name="user_id" value="' . $_SESSION["user_id"] . '">
                                         <input type="hidden" name="product_id" value="' . $row["product_id"] . '">
                                         <input type="hidden" name="product_price" value="' . $row["product_price"] . '">
 

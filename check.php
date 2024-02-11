@@ -21,30 +21,17 @@
 <body style="background-color: rgb(216, 216, 216);;">
     <div>
         <div>
-            <nav class="navbar navbar-expand-lg navbar-light" id="navigation">
+        <nav class="navbar navbar-expand-lg navbar-light" id="navigation">
                 <div class="container-fluid">
                     <a class="navbar-brand" href="index.php" style="margin-left: 10%; color: rgb(255, 255, 255);">E-Shop</a>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
-                        <!-- <?php 
-                                if ($_SESSION["username"] == 'admin') {   
-                                    echo 
-                                    '<li class="nav-item">
-                                        <a class="nav-link" href="adduserproduct.php" style="color: white;">Add User/Product</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="showuserproduct.php" style="color: white;">Show User/Product</a>
-                                    </li>';
-                                } else { 
-                                    echo '             
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="my-profile.php" style="color: white;">My Profile</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" href="contact-us.php" style="color: white;">Contact us</a>
-                                    </li>';
-                                }
-                            ?> -->
+                            <li class="nav-item">
+                                <a class="nav-link" href="my-profile.php" style="color: white;">My Profile</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="contact-us.php" style="color: white;">Contact us</a>
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -73,6 +60,11 @@
                 </script>
                 <?php
                     if (isset($_SESSION["username"])){
+                        if ($_SESSION["username"] == 'admin') {
+                            // Redirect the admin to a different PHP file
+                            header("Location: adduserproduct.php");
+                            exit(); // Ensure no further code execution after the redirect
+                        }                    
                         echo ' 
                         <div class="btn-group">
                         <button type="button" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" style="margin-right: 98px;">
