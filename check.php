@@ -201,7 +201,7 @@
     <div  style = "margin-top: 2%;">
         <section class="form-floating mb-3">
             <div class="container">
-                <form action="orders.php">
+            <form action="ordering.php" method="post">
                     <div class="row">
                         <div class="col" style="margin-left:10%;">
                             <h3>Billing Address</h3>
@@ -248,21 +248,30 @@
                             <label for="credit_cardName " style = "margin-top:2%;">Name on Card</label>
                             <input type="text" class="form-control" style=" width:60%;" id="credit_cardName" name="credit_cardName" placeholder="Name on Card">
 
-                            <label for="credit_cardId " style = "margin-top:2%;">Credit Card Number</label>
-                            <input type="text" class="form-control" style=" width:60%;" id="credit_cardId " name="credit_cardId " placeholder="**** **** **** ****">
+                            <label for="credit_cardNumber " style = "margin-top:2%;">Credit Card Number</label>
+                            <input type="number" class="form-control" style=" width:60%;" id="credit_cardNumber" name="credit_cardNumber" placeholder="**** **** **** ****">
 
                             <label for="credit_cardExpiration" style = "margin-top:2%;">Expiration Date</label>
                             <input type="date" class="form-control" style=" width:60%;" id="credit_cardExpiration" name="credit_cardExpiration" placeholder="M/Y">      
-                            <br>   
-                            <button typoe="submit"  name="submit" class="btn btn-primary" id="submit" style=" margin-top: 5%; width:60%; margin-left:0%; ">Checkout</button>
-                        </div>
+                            <br> 
+                            <?php  
+                            include("config.php");
+
+                            if (isset($_SESSION["username"])) {
+                                echo '<form action="add_to_cart.php" method="POST">
+                                        <input type="hidden" name="username" value="' .$_SESSION["username"] . '">
+                                        <button type="submit" name="submit" class="btn btn-primary" id="submit" style="margin-top: 5%; width: 60%; margin-left: 0%;">Checkout</button>
+                                        </form>';
+                            }
+                            ?>
+                            </div>
                     </div>
                     
                 </form>
             </section>
         </div>
         
-            
+
         </div>
   </div>
 
