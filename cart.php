@@ -197,36 +197,40 @@
 
         $user_id = $_SESSION['user_id']; 
 
-        $sql = "SELECT c.product_id, p.product_name, p.price, c.quantity
+        $sql = "SELECT c.product_id,p.product_picture,p.product_name, c.price, c.quantity
                 FROM cart c
-                JOIN products p ON c.product_id = p.product_id
-                WHERE c.user_id = ?";
+                JOIN products p ON c.product_id = p.product_id";
         $result = $conn->query($sql);
-        if ($result -> num_rows > 0){
+        if ($result->num_rows > 0) {
             echo '<section class="form-floating mb-3">
-
-            <h1 style="margin:1%; text-align:center;"> Products </h1>
-                <table class="table">
+                <h1 style="margin:1%; text-align:center;"> Products </h1>
+                <table class="table" style="width:80%; margin-left:10%;">
                     <thead>
-                        <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Product Name</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
+                        <tr style="width:20%;">
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:20%;">Product Name</th>
+                            <th scope="col" style="width:20%;">Price</th>
+                            <th scope="col" style="width:20%;">Quantity</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">0</th>
-                            <td>'.$row["product_name"].'</td>
-                            <td>'.$row["product_price"].'</td>
-                            <td>'.$row["quantity"].'</td>
-                        </tr>
-                    </tbody>
+                    <tbody>';
+            // Iterate over each row in the result set
+            while ($row = $result->fetch_assoc()) {
+                echo '<tr>
+                        <th scope="row">0</th>
+                        
+                        <td><img class="card-img-top" src="data:image/jpeg;base64,'.base64_encode($row["product_picture"]).
+                        '" style="width:15%; height: 50%;">'.$row["product_name"].'</td>
+                        <td>'.$row["price"].'</td>
+                        <td>'.$row["quantity"].'</td>
+                    </tr>';
+            }
+            echo '</tbody>
             </table>
-        </section>'
+            </section>';
+        } else {
+            echo "No products found in the cart.";
         }
-
     ?>
 
 
