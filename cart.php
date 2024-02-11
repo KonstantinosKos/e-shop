@@ -222,7 +222,10 @@
                         <td><img class="card-img-top" src="data:image/jpeg;base64,'.base64_encode($row["product_picture"]).
                         '" style="width:15%; height: 50%;">'.$row["product_name"].'</td>
                         <td>'.$row["price"].'</td>
-                        <td>'.$row["quantity"].'</td>
+                        <td>
+                        <button  type="button" class="btn btn-outline-primary" onclick="updateQuantity('.$row["product_id"].', -1)">-</button>
+                        <span id="quantity_'.$row["product_id"].'">'.$row["quantity"].'</span>
+                        <buttontype="button" class="btn btn-outline-primary" onclick="updateQuantity('.$row["product_id"].', 1)">+</button></td>                      
                     </tr>';
             }
             echo '</tbody>
@@ -233,6 +236,33 @@
         }
     ?>
 
+<script>
+    function updateQuantity(productId, change) {
+        var quantitySpan = document.getElementById('quantity_' + productId);
+        var currentQuantity = parseInt(quantitySpan.textContent);
+        var newQuantity = currentQuantity + change;
+        
+        if (newQuantity >= 1) {
+            // Update the displayed quantity
+            quantitySpan.textContent = newQuantity;
+
+            // Send AJAX request to update the quantity in the database
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'update_quantity.php', true);
+            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status === 200) {
+                    console.log(xhr.responseText); // Log the response from the server
+                } else {
+                    console.log('Request failed. Returned status of ' + xhr.status);
+                }
+            };
+            xhr.send('productId=' + productId + '&newQuantity=' + newQuantity);
+        } else {
+            alert('Quantity cannot be less than 1.');
+        }
+    }
+</script>
 
    
     <footer style="position: fixed; bottom: 0;">

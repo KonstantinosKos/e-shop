@@ -214,15 +214,12 @@
                     FROM products p
                     INNER JOIN categories c ON p.category_id = c.category_id
                     WHERE category_name = 'pclaptop'";
-            
-            // Execute the SQL query
+
             $result = $conn->query($sql);
 
             if ($result->num_rows > 0) {
                 echo '<div style="display: flex; flex-wrap: wrap; justify-content: space-between;  margin-left:8%; margin-top:3%;">';
                 while ($row = $result->fetch_assoc()) {
-                    // Note: I assume user_id is not directly related to product information
-                    // Modify this part based on your database structure
                     echo '<div style="flex-basis: calc(33.33% ); margin-bottom: 20px;">
                             <div class="card" style=width:50%;>
                                 <div class="card-body">
