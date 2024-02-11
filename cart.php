@@ -196,7 +196,7 @@
         include("config.php");
 
         $user_id = $_SESSION['user_id']; 
-
+        $totalPrice = 0;
         $sql = "SELECT c.product_id,p.product_picture,p.product_name, c.price, c.quantity
                 FROM cart c
                 JOIN products p ON c.product_id = p.product_id";
@@ -227,10 +227,15 @@
                         <span id="quantity_'.$row["product_id"].'">'.$row["quantity"].'</span>
                         <buttontype="button" class="btn btn-outline-primary" onclick="updateQuantity('.$row["product_id"].', 1)">+</button></td>                      
                     </tr>';
-            }
-            echo '</tbody>
-            </table>
-            </section>';
+                    $totalPrice += $row["price"] * $row["quantity"];
+                }
+                echo '</tbody>
+                </table>';
+                echo '<b style="margin-left:70%;">Total Price: 
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-euro" viewBox="0 0 16 16">
+                <path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936q-.002-.165.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.6 6.6 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z"/>
+                </svg>'.$totalPrice.'</p>';            
+                echo '</section>';
         } else {
             echo "No products found in the cart.";
         }
@@ -261,6 +266,14 @@
         } else {
             alert('Quantity cannot be less than 1.');
         }
+    }
+</script>
+
+<button type="button" class="btn btn-primary" onclick="proceedToCheckout()">Proceed to Checkout</button>
+
+<script>
+    function proceedToCheckout() {
+        window.location.href = 'check.php';
     }
 </script>
 
