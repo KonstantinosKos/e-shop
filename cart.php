@@ -221,13 +221,24 @@
                         
                         <td><img class="card-img-top" src="data:image/jpeg;base64,'.base64_encode($row["product_picture"]).
                         '" style="width:15%; height: 50%;">'.$row["product_name"].'</td>
-                        <td><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-euro" viewBox="0 0 16 16">
-                <path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936q-.002-.165.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.6 6.6 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z"/>
-                </svg>'.$row["price"].'</td>
                         <td>
-                        <button  type="button" class="btn btn-outline-primary" onclick="updateQuantity('.$row["product_id"].', -1)">-</button>
-                        <span id="quantity_'.$row["product_id"].'">'.$row["quantity"].'</span>
-                        <buttontype="button" class="btn btn-outline-primary" onclick="updateQuantity('.$row["product_id"].', 1)">+</button></td>                      
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-currency-euro" viewBox="0 0 16 16">
+                            <path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936q-.002-.165.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.6 6.6 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z"/>
+                            </svg>'.$row["price"].'
+                        </td>
+                        <td>
+                            <button  type="button" class="btn btn-outline-primary" onclick="updateQuantity('.$row["product_id"].', -1)">-</button>
+                            <span id="quantity_'.$row["product_id"].'">'.$row["quantity"].'</span>
+                            <button type="button" class="btn btn-outline-primary"  onclick="updateQuantity('.$row["product_id"].', 1)">+</button>
+                            <button type="button" class="btn btn-outline-danger" style="margin-left:40%; width:30%;" onclick="removeProduct('.$row["product_id"].')">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                </svg>
+                                </button>
+
+                        </td>  
+                    
                     </tr>';
                     $totalPrice += $row["price"] * $row["quantity"];
                 }
@@ -238,46 +249,66 @@
                 <path d="M4 9.42h1.063C5.4 12.323 7.317 14 10.34 14c.622 0 1.167-.068 1.659-.185v-1.3c-.484.119-1.045.17-1.659.17-2.1 0-3.455-1.198-3.775-3.264h4.017v-.928H6.497v-.936q-.002-.165.008-.329h4.078v-.927H6.618c.388-1.898 1.719-2.985 3.723-2.985.614 0 1.175.05 1.659.177V2.194A6.6 6.6 0 0 0 10.341 2c-2.928 0-4.82 1.569-5.244 4.3H4v.928h1.01v1.265H4v.928z"/>
                 </svg>'.$totalPrice.'</p>';            
                 echo '</section>';
+                
+                '<button type="button" class="btn btn-primary" onclick="proceedToCheckout()">Proceed to Checkout</button>';
+
         } else {
-            echo "No products found in the cart.";
+            $message = "Empty Cart!";
+            $redirect_url = "index.php";
+            echo "<script>alert('$message'); window.location.href = '$redirect_url';</script>";
         }
     ?>
 
-<script>
-    function updateQuantity(productId, change) {
-        var quantitySpan = document.getElementById('quantity_' + productId);
-        var currentQuantity = parseInt(quantitySpan.textContent);
-        var newQuantity = currentQuantity + change;
-        
-        if (newQuantity >= 1) {
-            // Update the displayed quantity
-            quantitySpan.textContent = newQuantity;
+    <script>
+        function updateQuantity(productId, change) {
+            var quantitySpan = document.getElementById('quantity_' + productId);
+            var currentQuantity = parseInt(quantitySpan.textContent);
+            var newQuantity = currentQuantity + change;
+            
+            if (newQuantity >= 1) {
+                // Update the displayed quantity
+                quantitySpan.textContent = newQuantity;
 
-            // Send AJAX request to update the quantity in the database
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', 'update_quantity.php', true);
+                xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    if (xhr.status === 200) {
+                        console.log(xhr.responseText); 
+                    } else {
+                        console.log('Request failed. Returned status of ' + xhr.status);
+                    }
+                };
+                xhr.send('productId=' + productId + '&newQuantity=' + newQuantity);
+            } else {
+                alert('Quantity cannot be less than 1.');
+            }
+        }
+    </script>
+
+    <script>
+        function removeProduct(productId) {
             var xhr = new XMLHttpRequest();
-            xhr.open('POST', 'update_quantity.php', true);
+            xhr.open('POST', 'remove_product.php', true);
             xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
             xhr.onload = function() {
                 if (xhr.status === 200) {
-                    console.log(xhr.responseText); // Log the response from the server
+                    // Reload the page to reflect changes
+                    window.location.reload();
                 } else {
                     console.log('Request failed. Returned status of ' + xhr.status);
                 }
             };
-            xhr.send('productId=' + productId + '&newQuantity=' + newQuantity);
-        } else {
-            alert('Quantity cannot be less than 1.');
+            xhr.send('productId=' + productId);
         }
-    }
-</script>
+    </script>
 
-<button type="button" class="btn btn-primary" onclick="proceedToCheckout()">Proceed to Checkout</button>
 
-<script>
-    function proceedToCheckout() {
-        window.location.href = 'check.php';
-    }
-</script>
+    <script>
+        function proceedToCheckout() {
+            window.location.href = 'check.php';
+        }
+    </script>
 
    
     <footer style="position: fixed; bottom: 0;">
