@@ -205,38 +205,55 @@
         </script>
 
     </div>
-    <section class="form-floating mb-3">
+    <?php
+        include("config.php");
 
-        <h1 style="margin:1%; text-align:center;"> Customer Orders </h1>
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">First Name</th>
-                        <th scope="col">Last Name</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Address</th>
-                        <th scope="col">City</th>
-                        <th scope="col">State</th>
-                        <th scope="col">Zip Code</th>
-                        <th scope="col">Products</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">0</th>
-                        <td>John</td>
-                        <td>Nikolaou</td>
-                        <td>Example@gmail.com</td>
-                        <td>Akadimias 7</td>
-                        <td>Athens</td>
-                        <td>Attiki</td>
-                        <td>1234</td>
-                        <td>Iphone 15</td>
-                    </tr>
-                </tbody>
-        </table>
-    </section>
+        $totalPrice = 0;
+        $sql = "SELECT o.order_number, o.quantity, o.price, u.user_email,p.product_picture, p.product_name
+                FROM orders o
+                JOIN users u ON u.user_id = o.user_id
+                JOIN products p ON p.product_id = o.product_id"
+                ;
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            echo '<section class="form-floating mb-3">
+                <h1 style="margin:1%; text-align:center;"> Orders </h1>
+                <table class="table" style="width:80%; margin-left:10%;">
+                    <thead>
+                        <tr style="width:20%;">
+                            <th scope="col" style="width:3%;">#</th>
+                            <th scope="col" style="width:20%;">E-mail</th>
+                            <th scope="col" style="width:20%;">Order Number</th>
+                            <th scope="col" style="width:20%;">Product</th>
+                            <th scope="col" style="width:20%;">Price</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>';
+            // Iterate over each row in the result set
+            $counter = 1;
+            $pricee = 0;
+            while ($row = $result->fetch_assoc()) {
+
+                echo '<tr>
+                        <th scope="row">'.$counter.'</th>
+                        <td>'.$row["user_email"].'</td>
+                        <td>'.$row["order_number"].'</td>
+                        <td><img class="card-img-top" src="data:image/jpeg;base64,'.base64_encode($row["product_picture"]).
+                        '" style="width:15%; height: 50%;">'.$row["product_name"].'</td>
+                        <td>'.$row["price"].'</td>
+                    </tr>';
+                    $counter++;
+                }
+                echo '</tbody>
+                </table>';           
+                echo '</section>';
+                
+        } else {
+            $message = "There are no orders for YOU";
+            echo "<script>alert('$message'); </script>";
+        }
+    ?>
    
     <footer style="position: fixed; bottom: 0;">
         <small>

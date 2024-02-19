@@ -214,9 +214,10 @@
                     </thead>
                     <tbody>';
             // Iterate over each row in the result set
+            $counter = 1;
             while ($row = $result->fetch_assoc()) {
                 echo '<tr>
-                        <th scope="row">0</th>
+                        <th scope="row">'.$counter.'</th>
                         
                         <td><img class="card-img-top" src="data:image/jpeg;base64,'.base64_encode($row["product_picture"]).
                         '" style="width:15%; height: 50%;">'.$row["product_name"].'</td>
@@ -239,6 +240,7 @@
                         </td>  
                     
                     </tr>';
+                    $counter++;
                     $totalPrice += $row["price"] * $row["quantity"];
                 }
                 echo '</tbody>
