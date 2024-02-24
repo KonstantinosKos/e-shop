@@ -255,7 +255,7 @@
         }
     ?>
    
-    <footer style="position: fixed; bottom: 0;">
+    <footer >
         <small>
             &copy; 2023 Ecart-Shop. All rights reserved.
         </small>
