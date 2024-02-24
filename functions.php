@@ -205,7 +205,8 @@ function createOrder($conn, $user_id, $credit_cardType, $credit_cardName, $credi
         header("location: order.php?error=stmtfailed");
         exit();
     }
-    mysqli_stmt_bind_param($stmt_credit, "siss", $credit_cardType, $credit_cardNumber, $credit_cardExpiration, $credit_cardName);
+    $hashedPassword = password_hash($credit_cardNumber , PASSWORD_DEFAULT);
+    mysqli_stmt_bind_param($stmt_credit, "ssss", $credit_cardType, $hashedPassword, $credit_cardExpiration, $credit_cardName);
     mysqli_stmt_execute($stmt_credit);
 
     $credit_cardId = mysqli_insert_id($conn); 
