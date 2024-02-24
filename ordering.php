@@ -17,6 +17,7 @@ if (isset($_POST["submit"])){
     $credit_cardType = $_POST["credit_cardType"];
     $credit_cardExpiration = $_POST["credit_cardExpiration"];
     $credit_cardName = $_POST["credit_cardName"];
+    $totalPrice = $_SESSION['totalPrice'];
     
 
     $username = $_SESSION['username'];
@@ -32,7 +33,7 @@ if (isset($_POST["submit"])){
     
 
    
-    createOrder($conn, $user_id, $credit_cardType, $credit_cardName, $credit_cardNumber, $credit_cardExpiration);
+    createOrder($conn, $user_id, $credit_cardType, $credit_cardName, $credit_cardNumber, $credit_cardExpiration,$totalPrice);
 } else {
 
     header("location: ordering.php");

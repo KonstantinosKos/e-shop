@@ -197,7 +197,7 @@ function emptyInputOrder( $firstname, $lastname, $email, $address, $city, $state
 }
 
 
-function createOrder($conn, $user_id, $credit_cardType, $credit_cardName, $credit_cardNumber, $credit_cardExpiration) {
+function createOrder($conn, $user_id, $credit_cardType, $credit_cardName, $credit_cardNumber, $credit_cardExpiration,$totalPrice) {
     // Insert credit card details
     $sql_credit = "INSERT INTO credit_card (credit_cardType, credit_cardNumber , credit_cardExpiration,credit_cardName) VALUES (?,?,?,?) ";
     $stmt_credit = mysqli_stmt_init($conn);
@@ -223,7 +223,7 @@ function createOrder($conn, $user_id, $credit_cardType, $credit_cardName, $credi
     
     $order_number = time() . mt_rand(1000, 9999);
     
-    $sql_orders = "INSERT INTO orders (product_id, user_id, credit_cardId, quantity, price, order_number) VALUES (?, ?, ?, ?, ?, ?)";
+    $sql_orders = "INSERT INTO orders (product_id, user_id, credit_cardId, quantity, price, order_number) VALUES (?, ?, ?, ?, $totalPrice, ?)";
     $stmt_orders = mysqli_stmt_init($conn);
     if (!mysqli_stmt_prepare($stmt_orders, $sql_orders)) {
         header("location: order.php?error=stmtfailed");
@@ -232,7 +232,7 @@ function createOrder($conn, $user_id, $credit_cardType, $credit_cardName, $credi
 
     while ($row = mysqli_fetch_assoc($result_cart)) {
         // Bind parameters for order details
-        mysqli_stmt_bind_param($stmt_orders, "iiiiii", $row['product_id'], $user_id, $credit_cardId, $row['quantity'], $row['price'], $order_number);
+        mysqli_stmt_bind_param($stmt_orders, "iiiii", $row['product_id'], $user_id, $credit_cardId, $row['quantity'], $order_number);
         mysqli_stmt_execute($stmt_orders);
     }
     mysqli_stmt_close($stmt_orders);
@@ -240,8 +240,5 @@ function createOrder($conn, $user_id, $credit_cardType, $credit_cardName, $credi
     header("location: orders.php?error=none");
     exit();
 }
-
-
-
 
 ?>

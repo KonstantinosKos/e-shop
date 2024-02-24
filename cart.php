@@ -196,6 +196,7 @@
         include("config.php");
 
         $totalPrice = 0;
+
         $sql = "SELECT c.product_id,p.product_picture,p.product_name, c.price, c.quantity
                 FROM cart c
                 JOIN products p ON c.product_id = p.product_id";
@@ -242,6 +243,7 @@
                     </tr>';
                     $counter++;
                     $totalPrice += $row["price"] * $row["quantity"];
+                    $_SESSION['totalPrice'] = $totalPrice;
                 }
                 echo '</tbody>
                 </table>';
