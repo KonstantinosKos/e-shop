@@ -209,7 +209,7 @@
         include("config.php");
 
         $totalPrice = 0;
-        $sql = "SELECT o.order_number, o.quantity, o.price, u.user_email,p.product_picture, p.product_name
+        $sql = "SELECT o.order_number, o.quantity, p.product_price, o.price, u.user_email,p.product_picture, p.product_name
                 FROM orders o
                 JOIN users u ON u.user_id = o.user_id
                 JOIN products p ON p.product_id = o.product_id"
@@ -226,6 +226,7 @@
                             <th scope="col" style="width:20%;">Order Number</th>
                             <th scope="col" style="width:20%;">Product</th>
                             <th scope="col" style="width:20%;">Price</th>
+                            <th scope="col" style="width:10%;">Order Price</th>
 
                         </tr>
                     </thead>
@@ -241,6 +242,7 @@
                         <td>'.$row["order_number"].'</td>
                         <td><img class="card-img-top" src="data:image/jpeg;base64,'.base64_encode($row["product_picture"]).
                         '" style="width:15%; height: 50%;">'.$row["product_name"].'</td>
+                        <td>'.$row["product_price"].'</td>
                         <td>'.$row["price"].'</td>
                     </tr>';
                     $counter++;
