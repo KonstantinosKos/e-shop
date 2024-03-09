@@ -209,10 +209,10 @@
     </div>
     <div class="row" >
         <div class="col-sm-6" style="">
-            <a type="button" class="btn btn-primary" style="width: 30%; margin-left:40%; margin-top:5%;" href="sign-up.php">Show user</a>
+            <a type="button" class="btn btn-primary" style="width: 30%; margin-left:40%; margin-top:5%;" href="showusers.php">Show user</a>
         </div>
         <div class="col-sm-6" style="">
-            <a type="button" class="btn btn-primary" style="width: 30%;margin-left:20%; margin-top:5%;" href="entryproduct.php">Show product</a>
+            <a type="button" class="btn btn-primary" style="width: 30%;margin-left:20%; margin-top:5%;" href="showproducts.php">Show product</a>
         </div>
     <footer style="position: fixed; bottom: 0;">
         <small>

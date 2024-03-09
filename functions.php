@@ -222,7 +222,7 @@ function createOrder($conn, $user_id, $credit_cardType, $credit_cardName, $credi
     mysqli_stmt_execute($stmt_cart);
     $result_cart = mysqli_stmt_get_result($stmt_cart);
     
-    $order_number = time() . mt_rand(1000, 9999);
+    $order_number =  mt_rand(1000, 9999);
     
     $sql_orders = "INSERT INTO orders (product_id, user_id, credit_cardId, quantity, price, order_number) VALUES (?, ?, ?, ?, $totalPrice, ?)";
     $stmt_orders = mysqli_stmt_init($conn);
