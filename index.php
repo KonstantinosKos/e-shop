@@ -35,33 +35,41 @@
                 </div>
                 <form class="d-flex">
                     <input class="form-control me-2" type="text" placeholder="Search" id="searchInput">
-                    <button class="btn btn-primary" type="button" id="searchButton">Search</button>
+                    <button class="btn btn-primary" type="button" id="searchButton" onclick="search()">Search</button>
                 </form>
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
-                        // Get the input element, button, and results container
                         var searchInput = document.getElementById('searchInput');
                         var searchButton = document.getElementById('searchButton');
+                        var resultsContainer = document.getElementById('resultsContainer');
 
-                        // Event listener for button click
                         searchButton.addEventListener('click', function () {
-                            // Call the search function with the current input value
                             search(searchInput.value);
                         });
-
-                        // Function to perform the search
                         function search(query) {
-                            // test that it works.
-                            window.alert('Search query: ' + query);
+                            var xhr = new XMLHttpRequest();
+
+                            xhr.open('POST', 'search.php', true);
+                            xhr.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+
+                            xhr.onload = function () {
+                                if (xhr.status === 200) {
+                                    resultsContainer.innerHTML = xhr.responseText;
+                                } else {
+                                    console.log('Request failed. Returned status of ' + xhr.status);
+                                }
+                            };
+
+                            xhr.send('query=' + encodeURIComponent(query));
                         }
                     });
                 </script>
+
                 <?php
                     if (isset($_SESSION["username"])){
                         if ($_SESSION["username"] == 'admin') {
-                            // Redirect the admin to a different PHP file
                             header("Location: adduserproduct.php");
-                            exit(); // Ensure no further code execution after the redirect
+                            exit(); 
                         }                    
                         echo ' 
                         <div class="btn-group">
