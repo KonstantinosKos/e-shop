@@ -242,8 +242,8 @@
                         <td>'.$row["order_number"].'</td>
                         <td><img class="card-img-top" src="data:image/jpeg;base64,'.base64_encode($row["product_picture"]).
                         '" style="width:15%; height: 50%;">'.$row["product_name"].'</td>
-                        <td>'.$row["product_price"].'</td>
-                        <td>'.$row["price"].'</td>
+                        <td>'.$row["product_price"].' €</td>
+                        <td>'.$row["price"].' €</td>
                     </tr>';
                     $counter++;
                 }
@@ -257,7 +257,7 @@
         }
     ?>
    
-    <footer >
+    <footer style="position: fixed; bottom: 0;" >
         <small>
             &copy; 2023 Ecart-Shop. All rights reserved.
         </small>
