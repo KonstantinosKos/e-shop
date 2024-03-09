@@ -6,7 +6,7 @@ if(isset($_POST['query'])) {
     
     $search_query = $_POST['query'];
 
-    $sql = "SELECT * FROM your_table_name WHERE column_name LIKE ?";
+    $sql = "SELECT * FROM products WHERE product_name LIKE ?";
     $stmt = $conn->prepare($sql);
     $search_query = '%' . $search_query . '%'; 
     $stmt->bind_param("s", $search_query);
@@ -16,7 +16,7 @@ if(isset($_POST['query'])) {
     if ($result->num_rows > 0) {
         while ($row = $result->fetch_assoc()) {
             
-            echo "<div>{$row['column_name']}</div>";
+            echo "<div>{$row['product_name']}</div>";
         }
     } else {
         echo "No results found";

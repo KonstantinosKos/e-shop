@@ -14,9 +14,7 @@ if (isset($_POST['productId']) && isset($_POST['newQuantity'])) {
     $stmt->execute();
     $stmt->close();
 
-    echo "Quantity updated successfully.";
 } else {
 
-    echo "Error: Product ID or new quantity not provided.";
 }
 ?>

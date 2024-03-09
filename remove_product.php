@@ -14,9 +14,7 @@ if(isset($_POST['productId'])) {
     $conn->close();
 
     http_response_code(200);
-    echo "Product removed successfully.";
 } else {
     http_response_code(400);
-    echo "Invalid request. Product ID not provided.";
 }
 ?>
