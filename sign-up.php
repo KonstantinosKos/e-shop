@@ -231,7 +231,7 @@
             <input type="number" name="zipcode"  class="form-control" id="floatingInput" placeholder="Zip Code" style="width: 30%; margin-top: 2%; margin-left:35%;">
             <input type="text" name="city"  class="form-control" id="floatingInput" placeholder="City" style="width: 30%; margin-top: 2%; margin-left:35%;">
             <input type="text" name="state"  class="form-control" id="floatingInput" placeholder="State" style="width: 30%; margin-top: 2%; margin-left:35%; ">
-            <button typoe="submit" name="submit" class="btn btn-primary" id="submit" style=" margin-top: 2%; margin-left:60%; ">Register</button>
+            <button type="submit" name="submit" class="btn btn-primary" id="submit" style=" margin-top: 2%; margin-left:60%; ">Register</button>
         </form>
         <?php
         if (isset($_GET["error"])){
