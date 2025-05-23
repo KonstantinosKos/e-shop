@@ -31,13 +31,9 @@ if (isset($_POST["submit"])){
     $user_id = $row_user['user_id'];
     $stmt_select_user->close();
     
-
-   
     createOrder($conn, $user_id, $credit_cardType, $credit_cardName, $credit_cardNumber, $credit_cardExpiration,$totalPrice);
 } else {
-
     header("location: ordering.php");
-
 }
 
 ?>

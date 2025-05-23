@@ -21,7 +21,8 @@
         <div>
             <nav class="navbar navbar-expand-lg navbar-light" id="navigation">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="index.php" style="margin-left: 10%; color: rgb(255, 255, 255);">E-Shop</a>
+                    <a class="navbar-brand" href="index.php"
+                        style="margin-left: 10%; color: rgb(255, 255, 255);">E-Shop</a>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
@@ -38,23 +39,23 @@
                     <button class="btn btn-primary" type="button" id="searchButton">Search</button>
                 </form>
                 <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        // Get the input element, button, and results container
-                        var searchInput = document.getElementById('searchInput');
-                        var searchButton = document.getElementById('searchButton');
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Get the input element, button, and results container
+                    var searchInput = document.getElementById('searchInput');
+                    var searchButton = document.getElementById('searchButton');
 
-                        // Event listener for button click
-                        searchButton.addEventListener('click', function () {
-                            // Call the search function with the current input value
-                            search(searchInput.value);
-                        });
-
-                        // Function to perform the search
-                        function search(query) {
-                            // test that it works.
-                            window.alert('Search query: ' + query);
-                        }
+                    // Event listener for button click
+                    searchButton.addEventListener('click', function() {
+                        // Call the search function with the current input value
+                        search(searchInput.value);
                     });
+
+                    // Function to perform the search
+                    function search(query) {
+                        // test that it works.
+                        window.alert('Search query: ' + query);
+                    }
+                });
                 </script>
                 <?php
                     if (isset($_SESSION["username"])){
@@ -103,7 +104,8 @@
                                         </label>
                                     </div>
                                     <div style="display: flex;">
-                                        <button type="submit" class="btn btn-primary" id="submit" name="submit">Submit</button>
+                                        <button type="submit" class="btn btn-primary" id="submit"
+                                            name="submit">Submit</button>
                                         <a href="sign-up.php" class="btn btn-success"
                                             style="height: 20%; margin-left: 2%;">Sign-up</a>
                                     </div>
@@ -139,9 +141,8 @@
                         <path
                             d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0m2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0M9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5M1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2z" />
                     </svg>Pc & Laptops</a>
-                <a href="gaming.php" class="category"><svg xmlns="http://www.w3.org/2000/svg"
-                        style=" margin-right: 5%;" width="16" height="16" fill="currentColor" class="bi bi-controller"
-                        viewBox="0 0 16 16">
+                <a href="gaming.php" class="category"><svg xmlns="http://www.w3.org/2000/svg" style=" margin-right: 5%;"
+                        width="16" height="16" fill="currentColor" class="bi bi-controller" viewBox="0 0 16 16">
                         <path
                             d="M11.5 6.027a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m-6.5-3h1v1h1v1h-1v1h-1v-1h-1v-1h1v-1" />
                         <path
@@ -182,41 +183,47 @@
             </div>
         </div>
         <script>
-            // JavaScript to show/hide the dropdown on hover
-            function showCategories() {
-                document.getElementById("categories-dropdown").style.display = "block";
-            }
+        // JavaScript to show/hide the dropdown on hover
+        function showCategories() {
+            document.getElementById("categories-dropdown").style.display = "block";
+        }
 
-            function hideCategories() {
-                document.getElementById("categories-dropdown").style.display = "none";
-            }
+        function hideCategories() {
+            document.getElementById("categories-dropdown").style.display = "none";
+        }
         </script>
 
     </div>
 
     <section class="form-floating mb-3">
-    <form action="entryproduct.php" method="post" enctype="multipart/form-data">
-        <div class="row">
-            <div class="col">
-                <input type="text" name="uid" class="form-control" id="productName" placeholder="Product Name" style="width: 30%; margin-left:70%; margin-top: 2%;">
+        <form action="entryproduct.php" method="post" enctype="multipart/form-data">
+            <div class="row">
+                <div class="col">
+                    <input type="text" name="uid" class="form-control" id="productName" placeholder="Product Name"
+                        style="width: 30%; margin-left:70%; margin-top: 2%;">
+                </div>
+                <div class="col">
+                    <input type="number" name="price" class="form-control" id="productPrice" placeholder="Price"
+                        style="width: 30%; margin-top: 2%;">
+                </div>
             </div>
-            <div class="col">
-                <input type="number" name="price" class="form-control" id="productPrice" placeholder="Price" style="width: 30%; margin-top: 2%;">
-            </div>
-        </div>
-        <input type="file" name="image" class="form-control" id="productImage" placeholder="Upload Picture" style="width: 30%; margin-left:70%; margin-top: 2%; margin-left:35%;">
-        <select class="form-select" name="category" aria-label="Category" id="productCategory" style="width: 30%; margin-top: 2%; margin-left:35%;">
-            <option value="pclaptop">Pc & Laptops</option>
-            <option value="gaming">Gaming</option>
-            <option value="mobiletablets">Mobile & Tablets</option>
-            <option value="imagesound">Image & Sound</option>
-            <option value="hardware">Hardware</option>
-            <option value="printers">Printers</option>
-        </select>
-        <input type="text" name="description" class="form-control" id="productDescription" placeholder="Description" style="width: 30%; margin-top: 2%; margin-left:35%;">
-        <button type="submit" name="submit" class="btn btn-primary" id="submit" style="margin-top: 2%; margin-left:59%;">Add product</button>
-    </form>
-    <?php
+            <input type="file" name="image" class="form-control" id="productImage" placeholder="Upload Picture"
+                style="width: 30%; margin-left:70%; margin-top: 2%; margin-left:35%;">
+            <select class="form-select" name="category" aria-label="Category" id="productCategory"
+                style="width: 30%; margin-top: 2%; margin-left:35%;">
+                <option value="pclaptop">Pc & Laptops</option>
+                <option value="gaming">Gaming</option>
+                <option value="mobiletablets">Mobile & Tablets</option>
+                <option value="imagesound">Image & Sound</option>
+                <option value="hardware">Hardware</option>
+                <option value="printers">Printers</option>
+            </select>
+            <input type="text" name="description" class="form-control" id="productDescription" placeholder="Description"
+                style="width: 30%; margin-top: 2%; margin-left:35%;">
+            <button type="submit" name="submit" class="btn btn-primary" id="submit"
+                style="margin-top: 2%; margin-left:59%;">Add product</button>
+        </form>
+        <?php
     if (isset($_GET["error"])){
         if ($_GET["error"] == "emptyinput"){
             echo "<h3>Fill in all Fields!</h3>";
@@ -229,7 +236,7 @@
         }
     }
     ?>
-</section>
+    </section>
     <footer style="position: fixed; bottom: 0;">
         <small>
             &copy; 2023 E-Shop. All rights reserved.

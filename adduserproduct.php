@@ -21,14 +21,16 @@
         <div>
             <nav class="navbar navbar-expand-lg navbar-light" id="navigation">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="index.php" style="margin-left: 10%; color: rgb(255, 255, 255);">E-Shop</a>
+                    <a class="navbar-brand" href="index.php"
+                        style="margin-left: 10%; color: rgb(255, 255, 255);">E-Shop</a>
                     <div class="collapse navbar-collapse" id="navbarNav">
                         <ul class="navbar-nav">
                             <li class="nav-item">
                                 <a class="nav-link" href="adduserproduct.php" style="color: white;">Add User/Product</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="showuserproduct.php" style="color: white;">Show User/Product</a>
+                                <a class="nav-link" href="showuserproduct.php" style="color: white;">Show
+                                    User/Product</a>
                             </li>
                         </ul>
                     </div>
@@ -38,23 +40,23 @@
                     <button class="btn btn-primary" type="button" id="searchButton">Search</button>
                 </form>
                 <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        // Get the input element, button, and results container
-                        var searchInput = document.getElementById('searchInput');
-                        var searchButton = document.getElementById('searchButton');
+                document.addEventListener('DOMContentLoaded', function() {
+                    // Get the input element, button, and results container
+                    var searchInput = document.getElementById('searchInput');
+                    var searchButton = document.getElementById('searchButton');
 
-                        // Event listener for button click
-                        searchButton.addEventListener('click', function () {
-                            // Call the search function with the current input value
-                            search(searchInput.value);
-                        });
-
-                        // Function to perform the search
-                        function search(query) {
-                            // test that it works.
-                            window.alert('Search query: ' + query);
-                        }
+                    // Event listener for button click
+                    searchButton.addEventListener('click', function() {
+                        // Call the search function with the current input value
+                        search(searchInput.value);
                     });
+
+                    // Function to perform the search
+                    function search(query) {
+                        // test that it works.
+                        window.alert('Search query: ' + query);
+                    }
+                });
                 </script>
                 <?php
                     if (isset($_SESSION["username"])){
@@ -103,7 +105,8 @@
                                         </label>
                                     </div>
                                     <div style="display: flex;">
-                                        <button type="submit" class="btn btn-primary" id="submit" name="submit">Submit</button>
+                                        <button type="submit" class="btn btn-primary" id="submit"
+                                            name="submit">Submit</button>
                                         <a href="sign-up.php" class="btn btn-success"
                                             style="height: 20%; margin-left: 2%;">Sign-up</a>
                                     </div>
@@ -138,9 +141,8 @@
                         <path
                             d="M8 1a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H9a1 1 0 0 1-1-1zm1 13.5a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0m2 0a.5.5 0 1 0 1 0 .5.5 0 0 0-1 0M9.5 1a.5.5 0 0 0 0 1h5a.5.5 0 0 0 0-1zM9 3.5a.5.5 0 0 0 .5.5h5a.5.5 0 0 0 0-1h-5a.5.5 0 0 0-.5.5M1.5 2A1.5 1.5 0 0 0 0 3.5v7A1.5 1.5 0 0 0 1.5 12H6v2h-.5a.5.5 0 0 0 0 1H7v-4H1.5a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .5-.5H7V2z" />
                     </svg>Pc & Laptops</a>
-                <a href="gaming.php" class="category"><svg xmlns="http://www.w3.org/2000/svg"
-                        style=" margin-right: 5%;" width="16" height="16" fill="currentColor" class="bi bi-controller"
-                        viewBox="0 0 16 16">
+                <a href="gaming.php" class="category"><svg xmlns="http://www.w3.org/2000/svg" style=" margin-right: 5%;"
+                        width="16" height="16" fill="currentColor" class="bi bi-controller" viewBox="0 0 16 16">
                         <path
                             d="M11.5 6.027a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m2.5-.5a.5.5 0 1 1-1 0 .5.5 0 0 1 1 0m-1.5 1.5a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1m-6.5-3h1v1h1v1h-1v1h-1v-1h-1v-1h1v-1" />
                         <path
@@ -181,44 +183,52 @@
             </div>
         </div>
         <script>
-            // JavaScript to show/hide the dropdown on hover
-            function showCategories() {
-                document.getElementById("categories-dropdown").style.display = "block";
-            }
+        // JavaScript to show/hide the dropdown on hover
+        function showCategories() {
+            document.getElementById("categories-dropdown").style.display = "block";
+        }
 
-            function hideCategories() {
-                document.getElementById("categories-dropdown").style.display = "none";
-            }
+        function hideCategories() {
+            document.getElementById("categories-dropdown").style.display = "none";
+        }
         </script>
 
     </div>
     <div class="row">
         <div class="col-sm-6">
-        <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" style="margin-left:50%; margin-top:10%;"  fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
-            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
-            <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
-        </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" style="margin-left:50%; margin-top:10%;"
+                fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+                <path
+                    d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4" />
+                <path
+                    d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z" />
+            </svg>
         </div>
-        
+
         <div class="col-sm-6">
-        <svg xmlns="http://www.w3.org/2000/svg"  width="80" height="80" style="margin-left:30%; margin-top:10%;" fill="currentColor" class="bi bi-database-add" viewBox="0 0 16 16">
-            <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0"/>
-            <path d="M12.096 6.223A5 5 0 0 0 13 5.698V7c0 .289-.213.654-.753 1.007a4.5 4.5 0 0 1 1.753.25V4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16c.536 0 1.058-.034 1.555-.097a4.5 4.5 0 0 1-.813-.927Q8.378 15 8 15c-1.464 0-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13h.027a4.6 4.6 0 0 1 0-1H8c-1.464 0-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10q.393 0 .774-.024a4.5 4.5 0 0 1 1.102-1.132C9.298 8.944 8.666 9 8 9c-1.464 0-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777M3 4c0-.374.356-.875 1.318-1.313C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4"/>
-        </svg>
+            <svg xmlns="http://www.w3.org/2000/svg" width="80" height="80" style="margin-left:30%; margin-top:10%;"
+                fill="currentColor" class="bi bi-database-add" viewBox="0 0 16 16">
+                <path
+                    d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0" />
+                <path
+                    d="M12.096 6.223A5 5 0 0 0 13 5.698V7c0 .289-.213.654-.753 1.007a4.5 4.5 0 0 1 1.753.25V4c0-1.007-.875-1.755-1.904-2.223C11.022 1.289 9.573 1 8 1s-3.022.289-4.096.777C2.875 2.245 2 2.993 2 4v9c0 1.007.875 1.755 1.904 2.223C4.978 15.71 6.427 16 8 16c.536 0 1.058-.034 1.555-.097a4.5 4.5 0 0 1-.813-.927Q8.378 15 8 15c-1.464 0-2.766-.27-3.682-.687C3.356 13.875 3 13.373 3 13v-1.302c.271.202.58.378.904.525C4.978 12.71 6.427 13 8 13h.027a4.6 4.6 0 0 1 0-1H8c-1.464 0-2.766-.27-3.682-.687C3.356 10.875 3 10.373 3 10V8.698c.271.202.58.378.904.525C4.978 9.71 6.427 10 8 10q.393 0 .774-.024a4.5 4.5 0 0 1 1.102-1.132C9.298 8.944 8.666 9 8 9c-1.464 0-2.766-.27-3.682-.687C3.356 7.875 3 7.373 3 7V5.698c.271.202.58.378.904.525C4.978 6.711 6.427 7 8 7s3.022-.289 4.096-.777M3 4c0-.374.356-.875 1.318-1.313C5.234 2.271 6.536 2 8 2s2.766.27 3.682.687C12.644 3.125 13 3.627 13 4c0 .374-.356.875-1.318 1.313C10.766 5.729 9.464 6 8 6s-2.766-.27-3.682-.687C3.356 4.875 3 4.373 3 4" />
+            </svg>
         </div>
     </div>
-    <div class="row" >
+    <div class="row">
         <div class="col-sm-6" style="">
-            <a type="button" class="btn btn-primary" style="width: 30%; margin-left:40%; margin-top:5%;" href="sign-up.php">Add User</a>
+            <a type="button" class="btn btn-primary" style="width: 30%; margin-left:40%; margin-top:5%;"
+                href="sign-up.php">Add User</a>
         </div>
         <div class="col-sm-6" style="">
-            <a type="button" class="btn btn-primary" style="width: 30%;margin-left:20%; margin-top:5%;" href="entryproduct.php">Add Product</a>
+            <a type="button" class="btn btn-primary" style="width: 30%;margin-left:20%; margin-top:5%;"
+                href="entryproduct.php">Add Product</a>
         </div>
-    <footer style="position: fixed; bottom: 0;">
-        <small>
-            &copy; 2023 E-Shop. All rights reserved.
-        </small>
-    </footer>
+        <footer style="position: fixed; bottom: 0;">
+            <small>
+                &copy; 2023 E-Shop. All rights reserved.
+            </small>
+        </footer>
 
 </body>
 
